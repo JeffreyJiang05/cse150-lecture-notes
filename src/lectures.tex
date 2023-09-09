@@ -1,5 +1,16 @@
 \documentclass{scrreprt}
 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english]{babel}
+
+% useful mathematical commands
+\input{commands}
+\input{theorems}
+
 \title{CSE 150 Lectures}
 \author{Jeffrey Jiang}
 \date{Fall Semester 2023}
@@ -12,6 +23,7 @@
 \newcounter{lecturenum}
 \addtocounter{lecturenum}{1}
 
+% include the tex files here. should be sorted by date
 \include{chapters/20230831}
 \include{chapters/20230905}
 \include{chapters/20230907}

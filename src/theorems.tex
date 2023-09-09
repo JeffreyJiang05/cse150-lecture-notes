@@ -1,0 +1,23 @@
+
+\newtheoremstyle{new_plain}{}{}{\itshape}{}{\bfseries}{.}{4pt}{\thmname{#1} \thmnumber{#2}}
+\newtheoremstyle{new_def}{}{}{}{}{\bfseries}{.}{4pt}{\thmname{#1}}
+
+\theoremstyle{new_plain}
+\newtheorem{theorem_temp}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{corollary}{Corollary}
+
+
+\theoremstyle{new_def}
+\newtheorem*{definition}{Definition}
+
+
+\newenvironment{theorem}{
+    \setcounter{lemma}{0}
+    \setcounter{corollary}{0}
+    \begin{theorem_temp}
+        }
+        {
+    \end{theorem_temp}
+}
