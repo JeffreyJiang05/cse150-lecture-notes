@@ -1,0 +1,9 @@
+# LATEX AUX FILES
+*.aux 
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+
+# VSCODE SPECIFIC
+*-workspace
