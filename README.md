@@ -15,9 +15,10 @@ The main content is stored in the `chapters` directory. Each $\LaTeX$ file is na
 Each $\LaTeX$ file in `chapters` should begin with the following:
 
 ```latex
-\chapter*{Lecture \arabic{lecturenum}}
-\addcontentsline{toc}{chapter}{Lecture \arabic{lecturenum}}
-\addtocounter{lecturenum}{1}
+\lecturechapter{author credits here}
+
+% example
+\lecturechapter{Written by me}
 ```
 
 After that, you can write up the notes. However, some things to note:

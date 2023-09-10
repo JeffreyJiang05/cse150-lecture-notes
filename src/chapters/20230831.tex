@@ -1,9 +1,11 @@
-\lecturechapter
+\lecturechapter{Based on work by Eduardo L., edited by Jeffrey J.}
 
-\section*{Modular Arithmetic}
+\section{Modular Arithmetic}
+\index{Modular Arithmetic}
 
 \begin{theorem}
-    \textbf{Quotient-Remainder Theorem} states that given integers \(a,b\in\mathbb{Z}\) that there exists integers \(q,r\in\mathbb{Z}\) such that \(a=bq+r\) and \(0\le r<b\). 
+    \textbf{Quotient-Remainder Theorem}\index{Quotient-Remainder Theorem} states that given integers \(a,b\in\mathbb{Z}\) that there exists integers \(q,r\in\mathbb{Z}\) 
+    such that \(a=bq+r\) and \(0\le r<b\). 
 \end{theorem}
 \begin{proof}
     \footnote{This is not my proof. This proof comes from Ireland, K., Rosen, M. (1982). \emph{A Classical Introduction to Modern Number Theory}, Bogden and Quigley, Inc. 
@@ -14,10 +16,10 @@
     exists and \(0\le r<b\).
 \end{proof}
 
-\(q\) is often called the quotient, and \(r\) is called the remainder. The process of finding such \(q,r\) is called \emph{Euclidean division}.
+\(q\) is often called the quotient, and \(r\) is called the remainder. The process of finding such \(q,r\) is called \emph{Euclidean division}\index{Quotient-Remainder Theorem!Euclidean Division}.
 \bigskip
 \begin{definition}
-    \emph{Modulo} is a binary operation accepting a pair of integers \(\mathbb{Z}\times\mathbb{Z}\) and outputs one integer \(\mathbb{Z}\). It is denoted typically with the
+    \emph{Modulo}\index{Modular Arithmetic!Modulo} is a binary operation accepting a pair of integers \(\mathbb{Z}\times\mathbb{Z}\) and outputs one integer \(\mathbb{Z}\). It is denoted typically with the
     operator by ``mod.'' The output of \(a\omod b\) is the remainder when performing Euclidean division with \(a\) and \(b\).\footnote{Typically in modular arithmetic, mathematicians
     do not define a modulo operator. They instead define modular congruences.} Here, \(b\) is often called the \emph{modulus}.
 \end{definition}

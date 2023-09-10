@@ -1,5 +1,119 @@
-\lecturechapter
+\lecturechapter{Written by Jeffrey J.}
 
-\begin{lemma}
-    test 2
-\end{lemma}
+\section{Introduction to Set Theory}
+\index{Set Theory}
+
+\subsection{Basic Definitions and Examples}
+
+\begin{definition}
+    A \emph{set}\index{Set Theory!Set} is a grouping of mathematical objects. 
+\end{definition}
+
+A set is an unordered collection where the multiplicity,i.e.\ number of times the element occurs, of elements does not matter.
+
+Some important common sets:\index{Set Theory!Common Sets}
+\begin{itemize}
+    \item The set of natural numbers, \(\mathbb{N}=\set{1,2,3,\dots}\)\footnote{Some include \(0\) as part of the natural numbers.}
+    \item The set of integers, \(\mathbb{Z}=\set{\dots,-2,-1,0,1,2,\dots}\)
+    \begin{itemize}
+        \item Sometimes, positive and negative integers are denoted as \(\mathbb{Z}^+\) and \(\mathbb{Z}^-\) respectively.
+        \item Nonnegative integers can be denoted as \(\mathbb{Z}_{\ge0}\).
+    \end{itemize}
+    \item The set of rational numbers, \(\mathbb{Q}=\setbuild{\frac{a}{b}}{a,b\in\mathbb{Z},b\ne0}\)
+    \item The set of irrational numbers, \(\mathbb{R}-\mathbb{Q}\)
+    \item The set of complex numbers, \(\mathbb{C}=\setbuild{a+bi}{a,b\in\mathbb{R},i=\sqrt{-1}}\)
+\end{itemize}
+Some more uncommon sets:
+\begin{itemize}
+    \item The set of Gaussian integers, \(\mathbb{Z}[i]=\setbuild{a+bi}{a,b\in\mathbb{Z},i=\sqrt{-1}}\)
+    \item Complete set of residue classes modulo \(n\), \(\mathbb{Z}/n\mathbb{Z}\).
+    \begin{itemize}
+        \item The element of \(\mathbb{Z}/n\mathbb{Z}\) is the set of integers \(\mathbb{Z}\) whose remainders are the same
+        when divided by \(n\). 
+        \item e.g.\ \(\mathbb{Z/2\mathbb{Z}}\) is the set containing the set of even numbers and odd numbers.
+        \item This is an example of a set containing sets.
+    \end{itemize}
+    \item The set of integer polynomials, i.e. polynomials with integer coefficients and variable \(x\), \(\mathbb{Z}[x]\)
+    \begin{itemize}
+        \item Likewise, the set of real and complex polynomials are \(\mathbb{R}[x]\) and \(\mathbb{C}[x]\) respectively.
+        \item These are examples of sets containing polynomials.
+    \end{itemize}
+    \item The set of invertible \(n\times n\) matrices with real entries, \(\lingroup{n}{\mathbb{R}}\)
+    \begin{itemize}
+        \item This is an example of a set containing matrices.
+    \end{itemize}
+    \item The set of permutations on set \(S\), \(\symgroup{S}\)
+    \begin{itemize}
+        \item A permutation is a function that ``rearranges" the order of the set.
+        \item This is an example of a set containing functions.
+    \end{itemize}
+\end{itemize}
+Sets are flexible, and they can contain many more mathematical constructs than listed above.
+
+\bigskip
+\begin{definition}
+    The \emph{empty set}\index{Set Theory!Empty Set} \(\emptyset\) is the set without any elements. 
+\end{definition}
+
+
+\subsection{Set Operations}
+\index{Set Operations}
+\begin{definition}
+    Two sets are \emph{equal} if they contain the same elements. Likewise, two sets are \emph{not equal} 
+    if they do not contain the same elements. Set equality and inequality is denoted by \(=\) and \(\ne\) respectively.   
+\end{definition}
+
+\bigskip
+\begin{definition}
+    If set \(S\) \emph{contains} element \(x\), then \(x\in S\). 
+\end{definition}
+
+\bigskip
+\begin{definition}
+    Set \(A\) is a \emph{subset} of set \(B\) if set \(B\) contains all elements of \(A\), i.e.\ \newline\(a\in B\sforall a\in A\).
+    This is denoted as \(A\subseteq B\).
+\end{definition}
+
+Examples:
+\begin{itemize}
+    \item \(\set{1,2}\subseteq\set{1,2,3}\)
+    \item \(\set{2,4}\not\subseteq\set{1,2,3}\)
+    \item \(2\not\subseteq\set{1,2,3}\) but \(2\in\set{1,2,3}\)
+    \item \(\mathbb{N}\subseteq\mathbb{Z}\subseteq\mathbb{Q}\subseteq\mathbb{R}\)
+    \item \(\mathbb{R}-\mathbb{Q}\subseteq\mathbb{R}\)
+    \item \(\mathbb{Z}[i]\subseteq\mathbb{C}\)
+    \item \(\emptyset\subseteq\set{-2,4,7,0}\)
+\end{itemize}
+
+\bigskip
+\begin{proposition}
+    The empty set \(\emptyset\) is a subset of any set \(S\).
+\end{proposition}
+\begin{proof}
+    Since the empty set does not contain any elements, by definition, \(S\) contains all of its elements. Therefore, \(\emptyset\subseteq S\).
+\end{proof}
+
+\bigskip
+\bigskip
+\begin{proposition}
+    Given sets \(A,B\), \(A=B\) if and only if \(A\subseteq B\) and \(B\subseteq A\).
+\end{proposition}
+\begin{proof}
+    Given \(A=B\). Then, by definition, all elements in \(A\) is contained in element \(B\). Therefore, \(A\subseteq B\).
+    Additionally, all elements of \(B\) are contained in \(A\). So, \(B\subseteq A\).
+
+    Now to prove the converse. Given \(A\subseteq B\) and \(B\subseteq A\), assume that \(A\ne B\). This means that there exists an element
+    in \(A\) or \(B\) which is not contained in the other set. Consider the case where this element \(x\) is in \(A\) but not \(B\), i.e.\
+    \(x\in A\), \(x\not\in B\). By definition, the statement \(A\subseteq B\) implies that all elements of \(A\) are contained in \(B\). This
+    is a contradiction. The same contradiction is reached if \(x\in B\) and \(x\not\in A\). Therefore, if \(A\subseteq B\) and \(B\subseteq A\),
+    then \(A=B\).
+\end{proof}
+
+\bigskip
+
+\begin{definition}
+    Set \(A\) is a \emph{proper subset} of set \(B\) if \(A\) is a subset of \(B\) and \(A\) is not equal to \(B\). This is denoted as \(A\subset B\).
+\end{definition}
+
+A corollary of proposition \(2.1\) is the empty set \(\emptyset\) is a proper subset of any set \(S\) as long as \(S\ne\emptyset\).
+

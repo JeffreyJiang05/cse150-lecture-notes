@@ -6,6 +6,9 @@
 *.synctex.gz
 *.toc
 *.tof
+*.idx
+*.ilg
+*.ind
 build/chapters
 
 # VSCODE SPECIFIC

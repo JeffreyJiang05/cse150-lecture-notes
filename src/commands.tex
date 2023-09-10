@@ -1,13 +1,35 @@
-\newcommand{\set}{\{\}}
-\newcommand{\setbuild}[2]{#1\mid#2}
+% command denoting a set
+\newcommand{\set}[1]{\{#1\}}
+
+% command for set builder notation using |
+\newcommand{\setbuild}[2]{\set{#1\mid#2}}
+% command for set builder notation using :
+\newcommand{\setbuildc}[2]{\set{#1:#2}}
+
+% space padded for all symbol
+\newcommand{\sforall}{\:\forall\:}
+
+% command for modular congruences 
 \newcommand{\modcong}[3]{#1\equiv#2\pmod{#3}}
+% command for operator mod
 \newcommand{\omod}{\text{ mod }}
 
-\newcommand{\lecturechapter}{
-    \chapter*{Lecture \arabic{lecturenum}}
+% command for linear group of matrices
+\newcommand{\lingroup}[2]{\text{GL}_{#1}(#2)}
+
+% command for symmetric group
+\newcommand{\symgroup}[1]{\text{Sym}_{#1}}
+
+% resets theorem count to 0
+\newcommand{\resetthm}{\setcounter{theorem_temp}{0}}
+
+% resets footnote to 0
+\newcommand{\resetfootnote}{\setcounter{footnote}{0}}
+
+\newcommand{\lecturechapter}[1]{
+    \chapter*{Lecture \arabic{lecturenum}\\ \normalfont{\normalsize#1}}
     \addcontentsline{toc}{chapter}{Lecture \arabic{lecturenum}}
     \addtocounter{lecturenum}{1}
     \addtocounter{chapter}{1}
+    \resetfootnote
 }
-
-\newcommand{\resetthm}{\setcounter{theorem_temp}{0}}
