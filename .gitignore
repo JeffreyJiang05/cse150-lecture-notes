@@ -9,7 +9,8 @@
 *.idx
 *.ilg
 *.ind
+*.out
 build/chapters
 
 # VSCODE SPECIFIC
-*-workspace
+*.code-workspace

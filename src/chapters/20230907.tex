@@ -1,1 +1,180 @@
-\lecturechapter{}
+\lecturechapter{Written by Jeffrey J.}
+
+\section{Introduction to Boolean Algebra}
+\index{Boolean Algebra}
+
+Boolean algebra is a branch of algebra that deals with true and false values. It is used to mathematically represent logic.
+True is represented by \(T\), and false is represented by \(F\).
+
+There are three fundamental operations in boolean algebra:
+\begin{itemize}
+    \item \emph{Conjunction}. This is ``logical and'' and it is denoted with \(\land\).
+    \item \emph{Disjunction}. This is ``logical or'' and it is denoted with \(\lor\).
+    \item \emph{Negation}. This is ``logical not'' and it is denoted with \(\lnot\).
+\end{itemize}
+
+The truth tables of these basic operation are shown below:
+
+\begin{figure}[H]
+    \centering
+    Truth Table for Conjunction
+
+    \begin{tabular}{ccc}
+        \(x\) & \(y\) & \(x\land y\) \\
+        \hline
+        \(T\) & \(T\) & \(T\) \\
+        \(T\) & \(F\) & \(F\) \\
+        \(F\) & \(T\) & \(F\) \\
+        \(F\) & \(F\) & \(F\)
+    \end{tabular}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    Truth Table for Disjunction
+
+    \begin{tabular}{ccc}
+        \(x\) & \(y\) & \(x\lor y\) \\
+        \hline
+        \(T\) & \(T\) & \(T\) \\
+        \(T\) & \(F\) & \(T\) \\
+        \(F\) & \(T\) & \(T\) \\
+        \(F\) & \(F\) & \(F\)
+    \end{tabular}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    Truth Table for Conjunction
+
+    \begin{tabular}{cc}
+        \(x\) & \(\lnot x\) \\
+        \hline
+        \(T\) & \(F\) \\
+        \(F\) & \(T\) 
+    \end{tabular}
+\end{figure}
+
+\section{Introduction to Set Theory, Continued.}
+\index{Set Theory}
+
+\subsection{Set-Builder Notation}
+\index{Set Theory!Set-Builder Notation}
+
+\emph{Set-Builder Notation} is a notation used to describe the elements of a set. In its most abstract form, it can be represented as \(\set{x\mid\lambda(x)}\).
+\(x\) is the element that would make up the set. The \(\mid\) symbol represents ``such that'' and \(\lambda(x)\) is a \emph{predicate} (a function that returns true or false).
+\(\lambda\) defines the properties that \(x\) needs to be included in the set. Additionally, you may specify the domain of the elements of the set. For example, 
+\(\set{x\in\mathbb{Z}\mid\lambda(x)}\) meaning the set contains all elements of the set of integers that satisfy \(\lambda\).\footnote{Some set-builder notation
+uses \(:\) instead of \(\mid\) for ``such that.''}
+
+Examples: 
+\begin{itemize}
+    \item \(\mathbb{C}=\setbuild{a+bi}{a,b\in\mathbb{R},i=\sqrt{-1}}\). 
+    \begin{itemize}
+        \item The complex numbers are the set whose elements are in the form \(a+bi\) such that \(a,b\) are real numbers and \(i\) is the square root of \(-1\).
+    \end{itemize}
+    \item \(K=\setbuild{x}{\sqrt{x}\in\mathbb{Z}}\). 
+    \begin{itemize}
+        \item This is the set of integer squares. This reads \(K\) is the set that has elements \(x\) such that the square root of \(x\) is an integer. 
+    \end{itemize}
+    \item \(\mathbb{E}=\set{x\in\mathbb{Z}:2\mid x}\). Here I use \(:\) for ``such that'' to differentiate from the ``divides'' operator. 
+    \begin{itemize}
+        \item This is the set of evens. This reads that \(\mathbb{E}\) is the set of integers where \(2\) evenly divides the integer.
+    \end{itemize}
+    \item \(\mathcal{P}(S)=\setbuild{X}{X\subseteq S}\). 
+    \begin{itemize}
+        \item The power set of \(S\) is all the sets \(X\) such that \(X\) is a subset of \(S\).
+    \end{itemize}
+    \item \(S\times R=\setbuild{(s,r)}{s\in S,r\in R}\). This set is called the cartesian product of set \(S\) and \(R\). For example, \(\mathbb{R}^2=\mathbb{R}\times\mathbb{R}\) 
+    is set of pairs of real numbers. 
+\end{itemize}
+
+More complex sets can be constructed in set builder notation in conjunction with the logical operators. For example, \(\setbuild{x\in\mathbb{Z}}{0<x<12\land x\omod 2=1}\) is the 
+set of odd integers between \(0\) and \(12\).
+
+\subsection{More Set Operations}
+\index{Set Theory!Set Operations}
+
+\bigskip
+\begin{definition}
+    The \emph{union} of two sets is the set containing all the elements of both sets. It is denoted with \(\cup\), and it is represented as \(A\cup B=\setbuild{x}{x\in A\lor x\in B}\).
+\end{definition}
+
+\bigskip
+\begin{definition}
+    The \emph{intersection} of two sets is the set whose elements are in both sets. It is denoted with \(\cap\), and it is represented as \(A\cap B=\setbuild{a\in A}{a\in B}\) or
+    \(\setbuild{x}{x\in A\land x\in B}\).
+\end{definition}
+
+\bigskip
+\begin{definition}
+    The \emph{set-difference} of two sets, denoted \(A-B\) or \(A\backslash\) with sets \(A,B\), is all the elements of \(A\) that are not in \(B\). In set-builder notation,
+    \(A-B=\setbuild{a\in A}{a\not\in B}\) or \(A-B=\setbuild{x}{x\in A\land x\not\in B}\).
+\end{definition}
+
+There was two different representation of intersection and set difference in set-builder notation provided. Although they both describe the same action, they have different semantic meaning.
+Take intersection, \(A\cap B=\setbuild{a\in A}{b\in B}\) means is the set of elements of \(A\) such that they are also in \(B\). However, \(\setbuild{x}{x\in A\land x\in B}\) means the set 
+of values such that the value are both contained in \(A\) and \(B\). What the ``values'' are is unstated. Typically, these values are assumed, or the domain was previously established. The
+``values'' are implied.
+
+Examples:
+\begin{itemize}
+    \item \(\set{a,b}\cup\set{b,c}=\set{a,b,c}\)
+    \item \(\set{a,b}\cap\set{b,c}=\set{b}\)
+    \item \(\set{a,b}-\set{b,c}=\set{a}\)
+    \item \(S\cup\emptyset=S\)
+    \item \(S\cap\emptyset=\emptyset\)
+    \item \(S-\emptyset=S\)
+    \item \(\emptyset-S=\emptyset\)
+    \item \(\mathbb{R}-\mathbb{Q}\) is the set of irrational numbers.
+\end{itemize}
+
+\bigskip
+\begin{definition}
+    The \emph{complement} of a set \(S\) is the set of values which are not in \(S\). The domain of set of ``values'' is implied or was previously established. It is typically denoted
+    by \(\overline{S}\). 
+\end{definition}
+
+The complement of a set is a specific case of set difference. Namely, if \(\overline{S}\) is the complement to set \(R\), then \(\overline{S}=R-S\). Importantly, \(S\subseteq R\). 
+This last requirement for complement is not required for regular set difference (e.g.\ \(\set{a,b}-\set{b,c}=\set{a}\) and \(\set{b,c}\not\subseteq\set{a,b}\)).
+
+Examples:
+\begin{itemize}
+    \item The complement of \(\set{2,3,4}\) to \(\set{1,2,3,4,5}\) is \(\overline{\set{2,3,4}}=\set{1,5}\).
+    \item Given that \(\mathbb{E}\) is the set of even integers, \(\overline{\mathbb{E}}=\mathbb{O}\) where \(\mathbb{O}\) is the set of odd integers. This assumes that it is the complement
+    to the set of integers \(\mathbb{Z}\).
+\end{itemize}
+
+\bigskip
+\begin{definition}
+    Two sets are \emph{disjoint} if they do not share any elements, i.e.\ the intersection of the sets is the empty set.
+\end{definition}
+
+A simple example is that \(\mathbb{E}\) is disjoint to \(\mathbb{O}\) where they denote even and odd integers respectively.
+
+\bigskip
+\begin{definition}
+    The \emph{cardinality} or \emph{order} of a set is the number of unique elements in the set.
+\end{definition}
+
+Examples:
+\begin{itemize}
+    \item \(|\set{1,2,3}|=3\)
+    \item \(|\set{\set{1,2,3}}|=1\)
+    \item \(|\emptyset|=0\)
+    \item \(|\mathbb{Z}|=\infty\)
+    \item \(|\symgroup{n}|=n!\). \(\text{Sym}_n\) is the set of permutations on set \(\setbuild{x\in\mathbb{Z}}{0<x\le n}=\set{1,2,\dots,n}\), i.e.\ the 
+    different ways which the set can be rearranged.  
+    \item The order of the set of symmetries on a regular \(n\)-sided polygon is \(2n\), denoted as \(|D_{2n}|=2n\).
+\end{itemize}
+
+\bigskip
+\begin{definition}
+    The \emph{power set} of set \(S\) denoted with \(\mathcal{P}(S)\) is the set of all subsets of \(S\). In set builder notation, it is \(\mathcal{P}(S)=\setbuild{X}{X\subseteq S}\).
+\end{definition}
+
+Examples:
+\begin{itemize}
+    \item \(\mathcal{P}(\set{1,2})=\set{\emptyset,\set{1},\set{2},\set{1,2}}\)
+    \item \(\mathcal{P}(\emptyset)=\set{\emptyset}\)
+\end{itemize}
