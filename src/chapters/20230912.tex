@@ -1,6 +1,6 @@
 \lecturechapter{Written by Jeffrey J.}
 
-\section{Set Theory, Cont.}
+\section{Set Theory, Continued.}
 \index{Set Theory}
 
 \subsection{Cardinality of Sets}
@@ -46,9 +46,10 @@ Examples:
 
 \bigskip
 
-Define set \(\mathcal{P}^n\) as operation of nesting \(\mathcal{P}\) \(n\) times on a set \(S\).
+Define set \(\mathcal{P}^n\) as operation of nesting \(\mathcal{P}\) \(n\) times on a set \(S\).\footnote{This is my own notation to represent this idea. I am not sure if there is more formal mathematical notation
+to represent this idea.}
 \begin{proposition} 
-    Given set \(S\), for \(\mathcal{P}^n(S)\) with \(n\in\mathbb{Z}^+\), \(\mathcal{P}^n(S)=2^{\mathcal{P}^{n-1}(S)}\) when \(n>1\) and \(\mathcal{P}^n(S)=\mathcal{P}(S)=2^{|S|}\) when \(n=1\).
+    Given set \(S\), for \(\mathcal{P}^n(S)\) with \(n\in\mathbb{Z}^+\), \(|\mathcal{P}^n(S)|=2^{|\mathcal{P}^{n-1}(S)|}\) when \(n>1\) and \(|\mathcal{P}^n(S)|=|\mathcal{P}(S)|=2^{|S|}\) when \(n=1\).
 \end{proposition}
 \begin{proof}
     Corollary of proposition 4.1. The \(S\) in \(\mathcal{P}(S)\) is a nested power set with one less \(\mathcal{P}\) when \(n>1\) and \(\mathcal{P}^1(S)=\mathcal{P}(S)=2^{|S|}\).
@@ -168,7 +169,7 @@ Additionally, a binary relation on a set can be represented pictorially. For exa
     \centering 
     Graph of Relation \(R\)
 
-    \resizebox{15em}{18em}{
+    \resizebox{12em}{14em}{
         \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
             \clip(-3.,-3.9) rectangle (3.,3.9);
             \draw [line width=2.pt] (-2.,2.) circle (1.4142135623730951cm);
@@ -205,6 +206,8 @@ The arrows in the relation are formed from the first element to the second eleme
 \end{definition}
 
 \subsection{Examples of Properties of Relations}
+
+The following uses relation \(R\subseteq S\times S\) where set \(S=\set{a,b,c,d}\).
 
 \begin{figure}[H]
     \centering
