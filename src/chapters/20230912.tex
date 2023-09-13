@@ -1,0 +1,385 @@
+\lecturechapter{Written by Jeffrey J.}
+
+\section{Set Theory, Cont.}
+\index{Set Theory}
+
+\subsection{Cardinality of Sets}
+
+\begin{proposition}
+    The cardinality of the power set on set \(S\), \(\mathcal{P}(S)\), is \(|\mathcal{P}(S)|=2^{|S|}\).
+\end{proposition}
+\begin{proof}
+    I will supply three proofs:
+    \begin{itemize}
+        \item Associate an unique \(|S|\)-bit string to each subset \(K\) of \(S\), \(K\subseteq S\). For each bit in the subset, if it is \(1\), the corresponding element in
+        \(S\) is contained in \(K\). If the bit is \(0\), then the corresponding element is not contained in \(S\). For example, given set \(S=\set{a,b,c,d}\), bit-string \(1101\)
+        corresponds to subset \(\set{a,b,d}\subseteq S\), \(1000\) to \(\set{a}\subseteq S\), \(1111\) to \(\set{a,b,c,d}\subseteq S\), and \(0000\) to \(\emptyset\subseteq S\).
+        Therefore, the number of possible bit-strings with length \(|S|\) is the number of subsets of \(S\), i.e.\ \(|\mathcal{P}(S)|\). The number of bit-strings is \(2^{|S|}\).
+        In conclusion, \(|\mathcal{P}(S)|=2^{|S|}\).\footnote{This is Professor Bender's proof. All credit goes to him.}
+        \item Logically, the subset \(X\subseteq S\) has the order \(0\le|X|\le|S|\). It is possible to count the number of subsets of length \(n\) for all \(n\in[0,|S|]\).
+        The number of ways for selecting the elements from \(S\) to be in subset \(S\) where the order of the selection does not matter (since sets are naturally unordered) 
+        can be represented through \emph{combination} or the binomial coefficient \(\binom{|S|}{k}\) for subset of size \(K\). Therefore, 
+        \(\mathcal{P}(S)=\sum_{k=0}^{|S|}\binom{|S|}{k}\). It is known that this sum equals \(2^{|S|}\). Therefore, \(\mathcal{P}(S)=2^{|S|}\).
+        \item Proof by induction: Define \(S_i\) to be the set such that \(|S_i|=i\) for all \(i\in\mathbb{Z}_{\ge0}\) and \(S_i\subset S_j\) when \(i<j\). Thus, 
+        \(S_0\subset S_1\subset S_2\subset\dots\subset S_n\). Note that any set \(S_n\) can be constructed this way, i.e.\ adding (through union) an unique single value, starting from 
+        the empty set. For example, \(\set{1,2,3}\) can be stated as \(\emptyset\subset\set{1}\subset\set{1,2}\subset\set{1,2,3}\). By definition, \(S_0=\emptyset\). Define the elements
+        of generic set \(S\) to be \(a_i\) where \(i\) represents the \(S_i\) in which the element is union. Thus, \(S_{i+1}=S_i\cup\set{a_{i+1}}\). Consider \(\mathcal{P}(S_0)=\set{\emptyset}\).
+        Thus, \(|\mathcal{P}(S_0)|=1=2^0\). Now consider \(S_1=S_0\cup\set{a_1}\) and \(\mathcal{P}(S_1)=\mathcal{P}(S_0\cup\set{a_1})\). \(\mathcal{P}(S_1)=\set{\emptyset,\set{a_1}}\). This
+        process can be thought of in terms of \(S_0\cup\set{a_1}\): for all sets \(K\) in \(\mathcal{P}(S_0)\), two new subsets of \(S_0\cup\set{a_1}\) can be generated, one is \(K\) itself and
+        the other is \(K\cup\set{a_1}\). Therefore, \(|\mathcal{P}(S_1)|=2|\mathcal{P}(S_0)|=2(2^0)=2^1\). Now consider \(S_2=S_1\cup\set{a_2}\). 
+        \(\mathcal{P}(S_2)=\mathcal{P}(S_1\cup\set{a_2})=\set{\emptyset,\set{a_2},\set{a_1},\set{a_1,a_2}}\). Again, each set in \(\mathcal{P}(S_1)\) can be used to generate two sets each: the set itself
+        or the set with element \(a_2\) added. Thus, \(|\mathcal{P}(S_2)|=2|\mathcal{P}(S_1)|=2(2^1)=2^2\). Thus, for \(i\in[0,2]\), \(|\mathcal{P}(S_i)|=2^i\). Now assume that this statement is 
+        true for \(i\in[0,k]\). Thus, \(|\mathcal{P}(S_k)|=2^k\). Consider \(S_{k+1}=S_k\cup\set{a_k}\), again \(\mathcal{P}(S_{k+1})\) can be generated from \(\mathcal{P}(S_k)\) and \(a_{k+1}\).
+        In the same way, all the sets in \(\mathcal{P}(S_k)\) can each be used to generated two more sets, the set as is or the set with \(a_{k+1}\) added. Therefore, 
+        \(|\mathcal{P}(S_{k+1})|=2|\mathcal{P}(S_k)|=2(2^k)=2^{k+1}\). This proves the induction assumption and for all \(i\in\mathbb{Z}_{\ge0}\) that \(|\mathcal{P}(S_i)|=2^i\). Also recall from
+        the definition of \(S_i\) that \(|S_i|=i\) and so \(|\mathcal{P}(S_i)|=2^{|S_i|}\). Since any set \(S\) can be broken down in the way described above, \(|\mathcal{P}(S)|=2^{|S|}\).
+        \footnote{The essential idea of the proof is that adding an element to a set will double the size of the power set since there are two possible subsets created for each of the subsets. There
+        is a lot of mathematical variables which can be confusing. I used these variables to be as general as possible for the proof.}
+    \end{itemize}
+\end{proof}
+Examples:
+\begin{itemize}
+    \item \(|\mathcal{P}(\emptyset)|=1\) as \(\mathcal{P}(\emptyset)=\set{\emptyset}\)
+    \item \(|\mathcal{P}(\mathcal{P}(\emptyset))|=2\) as \(\mathcal{P}(\mathcal{P}(\emptyset))=\set{\emptyset,\set{\emptyset}}\)
+    \item \(|\mathcal{P}(\mathcal{P}(\mathcal{P}(\emptyset)))|=4\) as \(\mathcal{P}(\mathcal{P}(\mathcal{P}(\emptyset)))=\set{\emptyset,\set{\emptyset},\set{\set{\emptyset}},\set{\emptyset,\set{\emptyset}}}\)
+\end{itemize}
+
+\bigskip
+
+Define set \(\mathcal{P}^n\) as operation of nesting \(\mathcal{P}\) \(n\) times on a set \(S\).
+\begin{proposition} 
+    Given set \(S\), for \(\mathcal{P}^n(S)\) with \(n\in\mathbb{Z}^+\), \(\mathcal{P}^n(S)=2^{\mathcal{P}^{n-1}(S)}\) when \(n>1\) and \(\mathcal{P}^n(S)=\mathcal{P}(S)=2^{|S|}\) when \(n=1\).
+\end{proposition}
+\begin{proof}
+    Corollary of proposition 4.1. The \(S\) in \(\mathcal{P}(S)\) is a nested power set with one less \(\mathcal{P}\) when \(n>1\) and \(\mathcal{P}^1(S)=\mathcal{P}(S)=2^{|S|}\).
+\end{proof}
+
+\bigskip
+\begin{proposition} Given sets \(A\) and \(B\):
+    \begin{enumerate}
+        \item \(|A\cup B|+|A\cap B|=|A|+|B|\)
+        \item \(|A\cup B| = |A|+|B| - |A\cap B|\)
+        \item \(|A\cap B| = |A|+|B| - |A\cup B|\)
+        \item \(|A-B|= |A| - |A\cap B|= |A\cup B| - |B|\)
+    \end{enumerate}
+\end{proposition}
+\newpage
+\begin{proof} Consider the venn diagram representing set \(A\) and set \(B\) and their intersection representing \(|A\cap B|\). The whole venn diagram represents \(|A\cup B|\).
+    \begin{enumerate}
+        \item See the following diagram:
+        \begin{figure}[H]
+            \centering
+            Graph of \(A\), \(B\), \(A\cap B\)
+
+            \resizebox{22em}{14em}{
+                \definecolor{qqqqff}{rgb}{0.,0.,1.}
+                \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+                    \clip(-1.2,-1.2) rectangle (2.2,1.2);
+                    \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.3499999940395355] (0.5,0.8660254037844386) -- (0.6,0.8) -- (0.8,0.6) -- (0.9185030596083398,0.3954138711402506) -- (0.9803396179297461,0.19731759555944162) -- (1.,0.) -- (0.9805806756909201,-0.19611613513818404) -- (0.9163123833984544,-0.40046425062749835) -- (0.8,-0.6) -- (0.6,-0.8) -- (0.5,-0.8660254037844387) -- (0.4,-0.8) -- (0.2,-0.6) -- (0.07744343598538173,-0.3858618745011503) -- (0.019419324309079777,-0.19611613513818385) -- (0.,0.) -- (0.019419324309079777,0.19611613513818385) -- (0.08416515569505867,0.4015551493343647) -- (0.2,0.6) -- (0.4,0.8) -- cycle;
+                    \draw [line width=2.pt] (0.,0.) circle (3.cm);
+                    \draw [line width=2.pt] (1.,0.) circle (3.cm);
+                    \draw (-0.5,0) node[anchor=north west] {A};
+                    \draw (1.25,0) node[anchor=north west] {B};
+                    \draw (0.3,0) node[anchor=north west] {$A\cap B$};
+                \end{tikzpicture}
+            }
+        \end{figure}
+        Note that \(A\cup B\) is the whole venn diagram, and \(A\cap B\) is the blue-shaded region in the center. See that \(|A|+|B|\) would encompass the whole diagram meaning $|A\cup B|< |A|+|B|$. 
+        However, adding the order of the two sets means that \(A\cup B\) is double-counted. Therefore, \(|A|+|B| = |A\cup B|+|A\cap B|\).
+        \item Algebraic manipulation on (\(1\))
+        \item Algebraic manipulation on (\(1\))
+        \item See the following diagram:
+        \begin{figure}[H]
+            \centering
+            Graph of \(A\), \(B\), \(A-B\)
+            
+            \resizebox{22em}{14em}{
+                \definecolor{ffccww}{rgb}{1.,0.8,0.4}
+                \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+                    \clip(-1.2,-1.2) rectangle (2.2,1.2);
+                    \fill[line width=2.pt,color=ffccww,fill=ffccww,fill opacity=0.20000000298023224] (0.5,0.8660254037844386) -- (0.3999780453712935,0.9165247204636433) -- (0.196116135138184,0.9805806756909201) -- (0.,1.) -- (-0.1961161351381841,0.9805806756909201) -- (-0.4068112931782862,0.9135122176208759) -- (-0.6,0.8) -- (-0.8,0.6) -- (-0.91898116472451,0.3943014314982675) -- (-0.9805806756909202,0.19611613513818385) -- (-1.,0.) -- (-0.9805806756909202,-0.19611613513818385) -- (-0.9181316182111328,-0.39627557537780034) -- (-0.8,-0.6) -- (-0.6,-0.8) -- (-0.41445981214124467,-0.9100676151362843) -- (-0.1961161351381841,-0.9805806756909201) -- (0.,-1.) -- (0.20156837345848647,-0.9794744462319066) -- (0.4037768247812923,-0.914857516649198) -- (0.5,-0.8660254037844387) -- (0.4,-0.8) -- (0.2,-0.6) -- (0.08037884783758709,-0.3928064873388374) -- (0.019419324309079777,-0.19611613513818385) -- (0.,0.) -- (0.019419324309079777,0.19611613513818385) -- (0.08129936420394579,0.39495460724990383) -- (0.2,0.6) -- (0.4,0.8) -- cycle;
+                    \draw [line width=2.pt] (0.,0.) circle (3.cm);
+                    \draw [line width=2.pt] (1.,0.) circle (3.cm);
+                    \draw (-0.5,0) node[anchor=north west] {A};
+                    \draw (1.25,0) node[anchor=north west] {B};
+                    \draw (0.3,0) node[anchor=north west] {$A\cap B$};
+                \end{tikzpicture}
+            }
+        \end{figure}
+        The area shaded in the light orange color is \(A-B\). Thus, it is clear that \(|A|-|A\cap B|\). Then substitute (\(3\)) into \(4\) to get that \(|A-B|= |A\cup B| - |B|\)
+    \end{enumerate}
+\end{proof}
+
+\subsection{Pairs, Triplets, k-tuple}
+\index{Set Theory!Set Operations}
+\index{Set Theory!Tuple}
+
+\begin{definition}
+    The \emph{cartesian product}, or \emph{cross product}, of sets \(S\) and \(R\) is \newline\(S\times R=\setbuild{(s,r)}{s\in S, r\in R}\).
+\end{definition}
+
+Examples:
+\begin{itemize}
+    \item \(\set{a,b}\times\set{x,y}=\set{\set{a,x},\set{a,y},\set{b,x},\set{b,y}}\)
+    \item \(\set{a,b}\times\emptyset=\emptyset\)
+    \item \(\emptyset\times\set{a,b}=\emptyset\)
+    \item \(\emptyset\times\emptyset=\emptyset\)
+    \item \(\mathbb{R}^2=\mathbb{R}\times\mathbb{R}\) is the set of 2-dimensional real vectors, called the vector space, represented by pairs \((a,b)\) where 
+    \(a,b\in\mathbb{R}\).
+\end{itemize}
+
+\bigskip
+\begin{proposition}
+    Given sets \(A,B\), then \(|A\times B|=|A||B|\).
+\end{proposition}
+\begin{proof}
+    By definition, \(A\times B\) is the set of all possible pairs \((a,b)\) where \(a\in A\) and \(b\in B\). There is thus \(|A|\) possible values for \(a\), and there is
+    \(|B|\) possible values for \(B\). Since these are independent events, the total possible values for \(|A\times B|\) is \(|A||B|\). Therefore, \(|A\times B|=|A||B|\).
+\end{proof}
+
+\bigskip
+\begin{definition}
+    The \emph{cartesian product} is defined to satisfy the following property \(A\times B\times C=(A\times B)\times C=A\times(B\times C)\). Therefore, the cross product is 
+    associative. 
+\end{definition}
+
+This allows the definition of \emph{triplets} and \emph{\(k\)-tuple}. Triplets are the cross product of three sets. A \(k\)-tuple is cross product of \(k\) sets. Although cartesian products
+are associative, it does not mean they are commutative since order of the pairs, triplets, and \(k\)-tuples matter. 
+
+\subsection{Relations}
+\index{Set Theory!Relations}
+
+\begin{definition}
+    A \(k\)-ary relation \(R\) on sets \(S_1,S_2,\dots,S_k\) is a subset of \(S_1\times S_2\times\dots\times S_k\), i.e.\ \(R\subseteq S_1\times S_2\times\dots\times S_k\).
+\end{definition}
+
+In other words, the \(k\)-ary relation is a set of \(k\)-tuples from the cross product of sets \(S_1,S_2,\dots,S_k\).
+
+\begin{definition}
+    A binary relation \(R\) on set \(S\) is a subset of \(S\times S=S^2\), i.e.\ \(R\subseteq S^2\).
+\end{definition}
+
+A binary relation can also be on two sets. However, when only one set \(S\) is provided in a \(k\)-ary relation, it is assumed that relation \(R\) is a subset of \(S^k\).
+
+Additionally, a binary relation on a set can be represented pictorially. For example, given \(S=\set{a,b,c,d}\) and relation \(R\) on \(S\) where \(R=\set{\set{a,c},\set{b,d}, 
+\set{d,d}, \set{a,a}, \set{c,a}}\), the following graph can be drawn:
+
+\begin{figure}[H]
+    \centering 
+    Graph of Relation \(R\)
+
+    \resizebox{15em}{18em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+            \clip(-3.,-3.9) rectangle (3.,3.9);
+            \draw [line width=2.pt] (-2.,2.) circle (1.4142135623730951cm);
+            \draw [line width=2.pt] (2.,2.) circle (1.4142135623730951cm);
+            \draw [line width=2.pt] (-2.,-2.) circle (1.4142135623730951cm);
+            \draw [line width=2.pt] (2.,-2.) circle (1.4142135623730951cm);
+            \draw [<->,line width=2.pt] (-2.0048459998124457,1.292909824501982)-- (-2.,-1.29);
+            \draw [->,line width=2.pt] (2.,1.29)-- (2.,-1.29);
+            \draw [<->,shift={(-2.,2.707106781186547)},line width=2.pt]  plot[domain=-0.5211469156817321:3.6711674726221233,variable=\t]({1.*0.7071067811865469*cos(\t r)+0.*0.7071067811865469*sin(\t r)},{0.*0.7071067811865469*cos(\t r)+1.*0.7071067811865469*sin(\t r)});
+            \draw [<->,shift={(2.,-2.71)},line width=2.pt]  plot[domain=-3.6698935961379116:0.5283009425481185,variable=\t]({1.*0.71*cos(\t r)+0.*0.71*sin(\t r)},{0.*0.71*cos(\t r)+1.*0.71*sin(\t r)});
+            \draw (-2.141072444974703,2.2) node[anchor=north west] {\LARGE$a$};
+            \draw (-2.141072444974703,-1.8) node[anchor=north west] {\LARGE$c$};
+            \draw (1.8797638792002187,2.2) node[anchor=north west] {\LARGE$b$};
+            \draw (1.860292516855546,-1.8) node[anchor=north west] {\LARGE$d$};
+        \end{tikzpicture}
+    }
+\end{figure}
+The arrows in the relation are formed from the first element to the second element of the ordered pair in the relation. If \((a,b)\) and \((b,a)\) are in \(R\), then its represented by the double arrow.
+\bigskip
+\begin{definition}
+    A binary relation \(R\in S\times S\) is \emph{reflexive} if for all \(a\in S\) \((a,a)\in R\).
+\end{definition}
+
+\begin{definition}
+    A binary relation \(R\in S\times S\) is \emph{symmetric} if for all \((a,b)\in R\) implies that \((b,a)\in R\).
+\end{definition}
+
+\begin{definition}
+    A binary relation \(R\in S\times S\) is \emph{transitive} if for all \(a,b,c\in S\), \((a,b)\in R\) and \((b,c)\in R\) implies that \((a,c)\in R\).
+\end{definition}
+
+\begin{definition}
+    If a relation is reflexive, symmetric, and transitive, it is an \emph{equivalence} relation. \index{Set Theory!Equivalence Relation}
+\end{definition}
+
+\subsection{Examples of Properties of Relations}
+
+\begin{figure}[H]
+    \centering
+    \textbf{Example of non-reflexive, non-symmetric, non-transitive relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (5.,4.)-- (9.,0.);
+            \draw [->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+\begin{figure}[H]
+    \centering 
+    \textbf{Example of non-reflexive, non-symmetric, transitive relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (5.,4.)-- (9.,0.);
+            \draw [->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (5.,4.)-- (5.,-4.);
+            \draw [->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of non-reflexive, symmetric, non-transitive relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (5.,4.)-- (9.,0.);
+            \draw [<->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of non-reflexive, symmetric, non-transitive relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,line width=2.pt, shorten >=3.pt,shorten <=3.pt] (5.,4.)-- (9.,0.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+
+    The graph above is not transitive because \((A,B)\in R\), \((R,A)\in R\) yet \((A,A)\not\in R\). Likewise for \((B,B)\not\in R\).
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of non-reflexive, symmetric, transitive relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,shift={(5.,6.)},line width=2.pt]  plot[domain=-0.5235987755983:3.6651914291880927,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,shift={(5.,-6.)},line width=2.pt]  plot[domain=-3.6651914291880927:0.5235987755982998,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+
+    The graph above is not reflexive because \((d,d)\not\in R\) and reflexivity requires all elements of \(S\) to do so.
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Examples of equivalence relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(5.,6.)},line width=2.pt]  plot[domain=-0.5235987755983:3.6651914291880927,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(5.,-6.)},line width=2.pt]  plot[domain=-3.6651914291880927:0.5235987755982998,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+    \hspace*{5em}
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, shift={(5.,6.)},line width=2.pt]  plot[domain=-0.5235987755983:3.6651914291880927,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, shift={(5.,-6.)},line width=2.pt]  plot[domain=-3.6651914291880927:0.5235987755982998,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (5.,4.)-- (1.,0.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (1.,0.)-- (9.,0.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (1.,0.)-- (5.,-4.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(5.,6.)},line width=2.pt]  plot[domain=-0.5235987755983:3.6651914291880927,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(5.,-6.)},line width=2.pt]  plot[domain=-3.6651914291880927:0.5235987755982998,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+
+    These examples shows an important property of equivalence relations: equivalence relations \emph{partitions} the set \(S\) with each connected sections forming an \emph{equivalence class}.
+\end{figure}
