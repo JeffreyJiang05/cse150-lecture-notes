@@ -1,0 +1,320 @@
+\lecturechapter{Written by Jeffrey J.}
+
+\section{Introduction to Boolean Algebra, Continued.}
+\index{Boolean Algebra}
+
+\subsection{Basic Definitions and Examples}
+
+\begin{definition}
+    A \emph{proposition} is a statement that is either \emph{true} or \emph{false}.
+\end{definition}
+
+Examples:
+\begin{itemize}
+    \item ``All humans are mortal.'' Proposition that is true\footnote{Does Henrietta Lacks count as immortal? Does her cancerous cells even count as being her?}
+    \item ``\(a^2+b^2+c^2=d^2\) has no solutions where \(a,b,c,d\in\mathbb{Z}\).'' Proposition that is true
+    \item ``The moon is purple.'' Proposition that is false
+    \item Goldbach's Conjecture: ``Every even number greater than \(2\) can be written as the sum of two primes.'' 
+    Proposition that has not been proven\footnote{Fun fact. In 1937, Ivan Vinogradov proved that every large enough
+    odd number can be written as the sum of three odd primes. In 2013, Harald Helfgott proved that every odd number greater than \(5\)
+    can be written as the sum of three primes. This is called Goldbach's Weak Conjecture.}
+    \item ``Did you do the dishes?'' Not a proposition. It is a question.
+    \item ``Play Mario with me.'' Not a proposition. It is a command.
+\end{itemize}
+
+There are three fundamental operations in boolean algebra:\index{Boolean Algebra!Operations}
+\begin{itemize}
+    \item \emph{Conjunction}. This is ``logical and'' and it is denoted with \(\land\).
+    \item \emph{Disjunction}. This is ``logical or'' and it is denoted with \(\lor\).
+    \item \emph{Negation}. This is ``logical not'' and it is denoted with \(\lnot, \bar{x}, !x\) where \(x\) is a proposition.
+\end{itemize}
+
+The truth tables of these basic operation are shown below:
+
+\begin{figure}[H]
+    \centering
+    Truth Table for Conjunction
+
+    \begin{tabular}{ccc}
+        \(x\) & \(y\) & \(x\land y\) \\
+        \hline
+        \(T\) & \(T\) & \(T\) \\
+        \(T\) & \(F\) & \(F\) \\
+        \(F\) & \(T\) & \(F\) \\
+        \(F\) & \(F\) & \(F\)
+    \end{tabular}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    Truth Table for Disjunction
+
+    \begin{tabular}{ccc}
+        \(x\) & \(y\) & \(x\lor y\) \\
+        \hline
+        \(T\) & \(T\) & \(T\) \\
+        \(T\) & \(F\) & \(T\) \\
+        \(F\) & \(T\) & \(T\) \\
+        \(F\) & \(F\) & \(F\)
+    \end{tabular}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    Truth Table for Negation
+
+    \begin{tabular}{cc}
+        \(x\) & \(\lnot x\) \\
+        \hline
+        \(T\) & \(F\) \\
+        \(F\) & \(T\) 
+    \end{tabular}
+\end{figure}
+
+These fundamental operators give rise to more complex operations:
+
+\begin{definition}
+    \emph{Material conditional}, or \emph{implication}, represents the idea of ``implies.'' Given two propositions \(a,b\), then \(a\rightarrow b\) means that \(a\) implies \(b\)
+    or ``if \(a\), then \(b\).'' The statement is true unless \(a\) is true and \(b\) is false since \(a\) being true implies that \(b\) is also true. \(a\) is called the
+    \emph{antecedent} and \(b\) is called the \emph{consequent}.   
+\end{definition}
+
+\begin{figure}[H]
+    \centering
+    True Table for Material Conditional
+    
+    \begin{tabular}{ccc}
+        \(a\) & \(b\) & \(a\rightarrow b\) \\
+        \hline
+        \(T\) & \(T\) & \(T\) \\
+        \(T\) & \(F\) & \(F\) \\
+        \(F\) & \(T\) & \(T\) \\
+        \(F\) & \(F\) & \(T\)
+    \end{tabular}
+\end{figure}
+
+\textbf{A note:} It may seem paradoxical how \(a\rightarrow b\) is true when \(a\) is false, but the true value is stating that the statement ``\(a\) implies \(b\)''
+is true, not that the operands are true. The statement states that \(b\) is true when \(a\) is true. It does not state anything about what \(b\) is when \(a\) is false.
+Therefore, the whole statement is true.
+
+\bigskip
+\begin{definition}
+    The \emph{converse} of conditional \(a\rightarrow b\) is \(b\rightarrow a\) given propositions \(a,b\).
+\end{definition}
+
+\begin{proposition}
+    \(a\rightarrow b\) is not equivalent to \(b\rightarrow a\), i.e.\ they do not always evaluate to the same truth value.
+\end{proposition}
+\begin{proof}
+    The truth table of the two reveals how the converse of a implication is not equivalent to the implication:
+    \begin{figure}[H]
+        \centering
+        \begin{tabular}{cccc}
+            \(a\) & \(b\) & \(a\rightarrow b\) & \(b\rightarrow a\) \\
+            \hline
+            \(T\) & \(T\) & \(T\) & \(T\) \\
+            \(T\) & \(F\) & \(F\) & \(T\) \\
+            \(F\) & \(T\) & \(T\) & \(F\) \\
+            \(F\) & \(F\) & \(T\) & \(T\)
+        \end{tabular}
+    \end{figure}
+\end{proof}
+
+Example:
+\begin{itemize}
+    \item ``If it is my birthday, then I am eating cake,'' is a conditional which is true. However, the converse is ``If I am eating cake, it is my birthday.''
+    The converse is not necessarily true. For example, what if it is someone else's birthday, and I am eating their birthday cake. Eating the cake does not 
+    imply that it is my birthday. 
+\end{itemize}
+
+\bigskip
+\begin{definition}
+    A \emph{vacuous conditional} is a statement that is true because the antecedent is false. 
+\end{definition}
+
+Example:
+\begin{itemize}
+    \item ``If the moon is purple, then the moon is made of cheese.'' This is a vacuous conditional because the ``the moon is purple'' is false. The 
+    conditional is true, however.
+\end{itemize}
+
+\begin{definition}
+    The \emph{contrapositive} of a material conditional \(a\rightarrow b\) is \(\lnot b\rightarrow\lnot a\).
+\end{definition}
+
+\begin{proposition}
+    A material conditional \(a\rightarrow b\) is equivalent to its contrapositive \newline\(\lnot b\rightarrow\lnot a\).
+\end{proposition}
+\begin{proof}
+    The truth table of the two reveals how the contrapositive of a implication is equivalent to the implication:
+    \begin{figure}[H]
+        \centering
+        \begin{tabular}{cccc}
+            \(a\) & \(b\) & \(a\rightarrow b\) & \(\lnot b\rightarrow\lnot a\) \\
+            \hline
+            \(T\) & \(T\) & \(T\) & \(T\) \\
+            \(T\) & \(F\) & \(F\) & \(F\) \\
+            \(F\) & \(T\) & \(T\) & \(T\) \\
+            \(F\) & \(F\) & \(T\) & \(T\)
+        \end{tabular}
+    \end{figure}
+\end{proof}
+
+\bigskip
+\begin{definition}
+    \emph{Material biconditional} or \emph{equivalence} represents the idea of ``if and only if.'' Given two propositions \(a,b\), then, \(a\leftrightarrow b\) means that \(a\) implies
+    \(b\) and \(b\) implies \(a\). The statement is true if \(a\) and \(b\) are both true or both false. 
+\end{definition}
+
+\begin{figure}[H]
+    \centering
+    True Table for Material Biconditional
+    
+    \begin{tabular}{ccc}
+        \(a\) & \(b\) & \(a\leftrightarrow b\) \\
+        \hline
+        \(T\) & \(T\) & \(T\) \\
+        \(T\) & \(F\) & \(F\) \\
+        \(F\) & \(T\) & \(F\) \\
+        \(F\) & \(F\) & \(T\)
+    \end{tabular}
+\end{figure}
+
+Material biconditional is also called equivalence, denoted \(\equiv\), because it requires both the operands to be the same truth value. Additionally, if an implication
+and its converse is true, then it is a biconditional. 
+
+Perhaps the most important application of biconditionals is that all definitions are biconditionals. This is what makes a definition a definition. For example, consider
+the definition of a square, i.e.\ a square is a rectangle with four equal sides. If a rectangle has four equal sides, then it is a square. Likewise, if a shape is a 
+square, then it is a rectangle with four equal sides. If a definition is presented as a conditional, its converse is also true. All definitions are biconditionals.
+
+\bigskip
+\begin{definition}
+    The \emph{exclusive or}, or \emph{XOR}, is true when its operands have different truth values. The symbol of XOR is typically \(\oplus\).
+\end{definition}
+
+\begin{figure}[H]
+    \centering
+    True Table for Exclusive Or
+    
+    \begin{tabular}{ccc}
+        \(a\) & \(b\) & \(a\oplus b\) \\
+        \hline
+        \(T\) & \(T\) & \(F\) \\
+        \(T\) & \(F\) & \(T\) \\
+        \(F\) & \(T\) & \(T\) \\
+        \(F\) & \(F\) & \(F\)
+    \end{tabular}
+\end{figure}
+
+\bigskip
+\begin{definition}
+    A proposition is \emph{satisfiable} if some setting of truth values makes the proposition true.\footnote{Satisfiability is a NP-complete problem}
+\end{definition}
+
+\bigskip
+\begin{definition}
+    A proposition is a \emph{tautology} if under all settings of truth values, the proposition is true.
+\end{definition}
+
+Likewise, if all possible settings of truth values makes a proposition false, then it is called a \emph{contradiction}.
+
+\bigskip
+\begin{definition}
+    A \emph{predicate} is a proposition whose truth value depends on one or more variables. In this sense, it is a function that outputs a truth value.
+\end{definition}
+
+Examples:
+\begin{itemize}
+    \item \(P(n)=\) ``\(n\) is even''. Then, \(P(2)=\text{true}\), \(P(1)=\text{false}\).
+    \item \(P(n)=\) ``\(n\) is food''. Then, \(P(\text{Apple})=\text{true}\), \(P(\text{Table})=\text{false}\)
+\end{itemize}
+
+\subsection{Properties in Boolean Algebra}
+\index{Boolean Algebra!Properties}
+
+All of the following may be proven using truth tables or with previous conclusions. The proofs are not shown, however.
+We will also denote true as \(1\) and false as \(0\) as is convention.\footnote{I'm just too lazy to type true and false every time.}
+
+\begin{proposition} 
+    \textbf{Basic Properties of Disjunction}
+    \begin{itemize}
+        \item Disjunction is associative, i.e.\ \((A\lor B)\lor B\equiv A\lor(B\lor C)\) for all propositions \(A,B,C\).
+        \item Disjunction is commutative, i.e.\ \(A\lor B\equiv B\lor A\) for all propositions \(A,B\).
+        \item The identity of disjunction is \(0\), i.e.\ \(A\lor0\equiv 0\lor A\equiv A\) for all proposition \(A\).
+        \item The annihilator of disjunction is \(1\), i.e.\ \(A\lor1\equiv 1\lor A\equiv 1\) for all proposition \(A\).
+    \end{itemize}
+\end{proposition}
+
+\bigskip
+\begin{proposition}
+    \textbf{Basic Properties of Conjunction}
+    \begin{itemize}
+        \item Conjunction is associative, i.e.\ \((A\land B)\land B\equiv A\land(B\land C)\) for all propositions \(A,B,C\).
+        \item Conjunction is commutative, i.e.\ \(A\land B\equiv B\land A\)  for all propositions \(A,B\).
+        \item The identity of conjunction is \(1\), i.e.\ \(A\land1\equiv 1\land A\equiv A\) for all proposition \(A\).
+        \item The annihilator of conjunction is \(0\), i.e.\ \(A\land0\equiv 0\land A\equiv 0\) for all proposition \(A\).
+    \end{itemize}
+\end{proposition}
+
+\bigskip
+\begin{proposition}
+    \textbf{Distributivity of Disjunction and Conjunction}. 
+    \newline For all propositions \(A,B,C\):
+    \begin{itemize}
+        \item \(A\lor(B\land C)\equiv (A\lor B)\land(A\lor C)\)
+        \item\(A\land(B\lor C)\equiv (A\land B)\lor(A\land C)\)
+    \end{itemize}
+\end{proposition}
+
+\bigskip
+\begin{proposition}
+    \textbf{Complementation of Disjunction and Conjunction}
+    \newline For all propositions \(A\):
+    \begin{itemize}
+        \item \(A\lor\lnot A\equiv 1\)
+        \item \(A\land\lnot A\equiv 0\)
+    \end{itemize}
+\end{proposition}
+
+\bigskip
+\begin{proposition}
+    Double negation states that for all proposition \(A\) that \(\lnot\lnot A\equiv A\).
+\end{proposition}
+
+\bigskip
+\begin{proposition}
+    \textbf{De Morgan's Law}
+    \newline For all propositions \(A,B\):
+    \begin{itemize}
+        \item \(\lnot(A\lor B)\equiv\lnot A\land\lnot B\)
+        \item \(\lnot(A\land B)\equiv\lnot A\lor\lnot B\)
+    \end{itemize}
+\end{proposition}
+
+\bigskip
+\begin{proposition}
+    For all propositions \(A,B\):
+    \begin{itemize}
+        \item \(A\land(A\lor B)=A\)
+        \item \(A\lor(A\land B)=A\)
+    \end{itemize}
+\end{proposition}
+
+\bigskip
+\begin{proposition}
+    For all propositions \(A,B\):
+    \begin{itemize}
+        \item \((\lnot(A\equiv B))\equiv (A\oplus B)\)
+        \item \((\lnot(A\oplus B))\equiv (A\equiv B)\)
+    \end{itemize}    
+\end{proposition}
+
+\bigskip
+An application of the above properties:
+\begin{itemize}
+    \item Given \texttt{if (x >= 0 \&\& (x < 0 || y))}. Let \(A=\) (\texttt{x>=0}) and \(B=\)\texttt{ y}. Note that \texttt{x<0} is equivalent to \(\lnot A\).
+    Therefore, the code can be rewritten as \(A\land(\lnot A\lor B)\) in boolean algebra. Apply the distributive property for conjunction,
+    \((A\land\lnot A)\lor(A\land B)\). Note the annihilator property for conjunction, \(0\lor(A\land B)\). Now apply the identity for disjunction,
+    \(A\land B\). In conclusion, the expression above simplifies to \(A\land B\) or \texttt{x >= 0 \&\& y}.\footnote{In class, we proved a similar example
+    using a truth table. However, knowing these properties allows you to simplify the statements without using a truth table}
+\end{itemize}
