@@ -1,0 +1,56 @@
+\lecturechapter{Written by Jeffrey J.}
+
+\section{Introduction to Boolean Algebra, Continued.}
+\index{Boolean Algebra}
+
+\subsection{More Notes on Quantifiers}
+
+The order of quantifiers matter! For example, take Goldbach's Conjecture.
+
+\begin{proposition}
+    Every even integer greater than \(2\) is the sum of two prime numbers.\footnote{Here prime numbers are defined to be the 
+    positive prime elements in the integers. Colloquially, prime numbers are positive, but the mathematical definition of prime
+    includes the negatives, i.e.\ \(p\) is prime if and only if \(p\mid ab\), then either \(p\mid a\) or \(p\mid b\).} 
+\end{proposition}
+This can be written in propositional logic as follows: Let \(\mathbb{E}\) be the set of even numbers greater than \(2\). Let \(P\) be the set of
+prime numbers. Goldbach's conjecture states \(\forall\:x\in\mathbb{E}\:\exists\:a,b\in P\:a+b=x\). However, switching the quantifiers would make
+the statement \(\exists\:a,b\in P\:\forall\:x\in\mathbb{E}\:a+b=x\). This means that there exists two primes \(a,b\) where their sum is equal to
+all the even integers greater than \(2\). This is clearly incorrect and has a different meaning from Goldbach's conjecture. 
+
+More specifically, the order of quantifiers matter between different quantifiers. If two quantifiers next to each other are the same, then they can 
+be readily switched. For example, consider \(\forall\:a,b\) which is the same as \(\forall\:a\:\forall\:b\). This is equivalent to 
+\(\forall\:b\:\forall\:a\).
+
+\bigskip
+This is how negation affects existential quantifiers:
+\begin{itemize}
+    \item \(\lnot(\forall\:x\:P(x))\Rightarrow\:\exists\:x\:\lnot P(x)\)
+    \item \(\lnot(\exists\:x\:P(x))\Rightarrow\:\forall\:x\:\lnot P(x)\)
+\end{itemize}
+An example of simplifying a proposition containing quantifiers is shown below:
+\begin{align*}
+    \lnot(\forall\:x\:\exists\:y\:\forall\:z\:P(x,y,z))&=\exists\:x\:\lnot(\exists\:y\:\forall\:z\:P(x,y,z))\\
+                                                       &=\exists\:x\:\forall\:y\:\lnot(\forall\:z\:P(x,y,z))\\
+                                                       &=\exists\:x\:\forall\:y\:\exists\:z\:\lnot P(x,y,z)
+\end{align*}
+
+\bigskip
+\textbf{A note:} The \(\forall\) can be thought as a sequence of \(\land\) which require that all \(x\) to satisfy the predicate. In notation,
+\[(\forall\:x\in S\:P(x))\equiv(\bigwedge_{x\in S}P(x))\]
+Similarly, the \(\exists\) can be thought as a sequence or \(\lor\) which require that at least a single \(x\) to satisfy the predicate. In notation,
+\[(\exists\:x\in S\:P(x))\equiv(\bigvee_{x\in S}P(x))\]
+Here the large conjunction and disjunction represents performing conjunction and disjunction in a sequence. This is akin to how \(\sum\) is used for
+summation and \(\prod\) is used for multiplying in a sequence.
+
+\bigskip
+\textbf{Another note:} Given \(\forall\:x\in S\:P(x)\), it means \(\forall\:x\:(x\in S)\rightarrow P(x)\). However, given \(\exists\:x\in S\:P(x)\),
+it means \(\exists\:x\:(x\in S)\land P(x)\).
+
+\bigskip
+\subsection{Limits on Symbolic Logic}
+There are sometimes limits on symbolic logic. This usually occurs when the it is self-referential. Take the following example:
+
+Let proposition \(P\) be ``This sentence contains a double negative.'' This is a false statement. However, consider \(\lnot\lnot P\) to be
+``It is not the case that the sentence does not contains a double negative.'' This is a true statement. However, \(\lnot\lnot P\equiv P\)
+which is false since one is true and the other is false. 
+

@@ -1,0 +1,132 @@
+\lecturechapter{Written by Jeffrey J.}
+
+\section{Introduction to Boolean Algebra, Continued.}
+\index{Boolean Algebra}
+
+\subsection{Summary and Further Explanations}
+
+\begin{figure}[H]
+    \centering
+    Truth Table of basic binary logical operators
+    \begin{tabular}{ccccccc}
+        \(P\) & \(Q\) & \(P\land Q\) & \(P\lor Q\) & \(P\rightarrow Q\) & \(P\leftrightarrow Q\) & \(P\oplus Q\) \\
+        \hline
+        \(T\) & \(T\) & \(T\) & \(T\) & \(T\) & \(T\) & \(F\) \\
+        \(T\) & \(F\) & \(F\) & \(T\) & \(F\) & \(F\) & \(T\) \\
+        \(F\) & \(T\) & \(F\) & \(T\) & \(T\) & \(F\) & \(T\) \\
+        \(F\) & \(F\) & \(F\) & \(F\) & \(T\) & \(T\) & \(F\)
+    \end{tabular}
+\end{figure} 
+\begin{figure}[H]
+    \centering
+    Truth Table of Negation
+
+    \begin{tabular}{cc}
+        \(P\) & \(\lnot P\) \\
+        \hline
+        \(T\) & \(F\) \\
+        \(F\) & \(T\)
+    \end{tabular}
+\end{figure}
+
+\textbf{Note:} For material conditional, or implication, it can be viewed analogously to a promise. Given \(A\rightarrow B\),
+then someone can promise that if \(A\) occurs, then they will do \(B\). If \(A\) occurs and \(B\) does not result, then the 
+promise is broken and is a lie (i.e.\ is false). If \(A\) does not happen, then \(B\) may or may not happen. Still the promise
+is kept (i.e.\ is true) since \(A\) never occurs.
+
+Implication plays a role in theorems. Theorems are implications where if an initial condition \(P\) is satisfied, then the result
+that the theorem describes \(Q\) is also true. In symbolic logic, it is \(P\rightarrow Q\). 
+
+\bigskip
+\begin{definition}
+    The inverse of conditional \(A\rightarrow B\) is \(\lnot A\rightarrow\lnot B\).
+\end{definition}
+
+Note that the converse and the inverse are contrapositives. 
+
+\bigskip
+
+\begin{proposition}
+    \((P\rightarrow Q)\equiv(\lnot P\lor Q)\)
+\end{proposition}
+\begin{proof}
+    I will provide two proofs, one using properties of the logical operators and another using a truth table:
+    \begin{itemize}
+        \item Consider when \(P\rightarrow Q\) is false. It is false when \(P\) is true and \(Q\) is false. Therefore,
+        \(P\land\lnot Q\) is when \(P\rightarrow Q\) is false. Therefore, \(P\rightarrow Q\) is true when \(\lnot(P\land\lnot Q)\).
+        Applying De Morgan's law reveals \((\lnot P\lor Q)\equiv(P\rightarrow Q)\).
+        \item Clearly, \((P\rightarrow Q)\equiv(\lnot P\lor Q)\).
+        \begin{figure}[H]
+            \centering
+            \begin{tabular}{cccc}
+                \(P\) & \(Q\) & \(P\rightarrow Q\) & \(\lnot P\lor Q\) \\
+                \hline
+                \(T\) & \(T\) & \(T\) & \(T\) \\
+                \(T\) & \(F\) & \(F\) & \(F\) \\
+                \(F\) & \(T\) & \(T\) & \(T\) \\
+                \(F\) & \(F\) & \(T\) & \(T\)
+            \end{tabular}
+        \end{figure}
+    \end{itemize}
+\end{proof}
+
+\begin{corollary}
+    \((\lnot(P\rightarrow Q))\equiv(P\land\lnot Q)\)
+\end{corollary}
+\begin{proof}
+    Apply De Morgan's Law.
+\end{proof}
+
+\bigskip
+One examples of tautologies include the annihilator of disjunction \(A\lor\lnot A\) or simply \(A\rightarrow A\). One example of a 
+contradiction includes the annihilator of conjunction \(A\land\lnot A\) or simply \(\lnot(A\rightarrow A)\). 
+
+\subsection{Quantifiers}
+\index{Boolean Algebra!Quantifiers}
+
+There are two main logical quantifiers:
+\begin{itemize}
+    \item ``For all'' represented by \(\forall\)
+    \item ``There exists'' represented by \(\exists\)
+\end{itemize}
+
+Examples:
+\begin{itemize}
+    \item Let \(P(x)\equiv x^2\ge0\). Then, \(\forall\:x\), \(P(x)\) is true. Additionally, \(\exists\:x\) where \(P(x)\) is true.
+    \begin{itemize}
+        \item The set which \(x\) belongs to is implicit in this case. Typically, the set which \(x\) belongs to is explicitly stated.
+    \end{itemize}
+    \item Let \(P(x)\equiv x^2\ge0\). Then \(\forall\:x\in\mathbb{C}\), \(P(x)\) is false. However, \(\exists\:x\in\mathbb{C}\) where \(P(x)\) is true.
+    \item Let \(P(x)\equiv x^2>0\). Then \(\forall\:x\in\mathbb{Z}\), \(P(x)\) is false. However, \(\exists\:x\in\mathbb{Z}\) where \(P(x)\) is true.
+\end{itemize}
+
+There is a less common quantifier called the uniqueness quantification which means ``there exists an unique." It is denoted by \(\exists!\). For example,
+Euclidean division states that given \(a,b\in\mathbb{Z}\:\exists!\:q,r\in\mathbb{Z}\) such that \((a=bq+r)\land(r\in[0,b))\).
+
+\subsection{Ambiguity in Converting English to Logic}
+
+English can be ambiguous when converting English to logic. For example, take ``You may either eat cake or eat ice cream.'' There is two possible meanings.
+Let \(C\) represent eating cake and \(I\) represent eating ice cream. The statement can be interpreted two ways:
+\begin{itemize}
+    \item You may eat cake but not ice cream, or you may eat ice cream but not cake. This is represented by \(C\oplus I\) since you are not allowed to eat
+    both. Therefore, it is exclusive.
+    \item You may either eat cake, ice cream, or both. This is represented by \(C\lor I\).
+\end{itemize}
+Thus, in English, the word \(or\) can either mean ``logical or'' or ``exclusive or.''
+
+\bigskip
+Another example: ``Every American has a dream.'' Let \(A\) be the set of Americans and \(D\) be the set of dreams. Additionally, let \(H(a,d)\) represent
+``\(a\) has dream \(b\).'' Then, there is two meaning:
+\begin{itemize}
+    \item \(\exists\: d\in D\:\forall\:a\in A, H(a,d)\). This means: there exists a dream such that all americans has this dream.
+    \item \(\forall\: a\in A\:\exists\:d\in D, H(a,d)\). This means: for each americans, there exists a dream which they have.
+\end{itemize}
+
+\bigskip
+A final example: ``If you can solve any problem, then you get an A.'' Let \(P\) be the set of problems and predicate \(G(p)\) mean ``you can solve problem \(p\).''
+Let \(A\) be the proposition of getting an A. Then, there is two potential meanings:
+\begin{itemize}
+    \item \((G(p)\:\forall\:p\in P)\rightarrow A\). This means: if you can solve every problem, then you get an A.
+    \item \((\exists\:p\in P, G(p))\rightarrow A\). This means: if there exists a problem you can solve, then you can get an A.
+\end{itemize}
+Here ``any'' can mean existence or for all. 
