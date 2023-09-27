@@ -1,0 +1,504 @@
+\lecturechapter{Written by Jeffrey J.}
+
+\section{Set Theory: Relations}
+\index{Set Theory!Relations}
+
+\begin{definition}
+    A \emph{binary relation} \(R\) on set \(S\) is a subset of \(S\times S=S^2\), i.e.\ \(R\subseteq S\times S\).
+\end{definition}
+
+\bigskip
+\subsection{Basic Properties of Relations}
+
+\begin{definition}
+    A relation \(R\) on set \(S\) is \emph{reflexive} if \(\sforall a\in S\:(a,a)\in R\).
+\end{definition}
+
+\bigskip
+\begin{definition}
+    A relation \(R\) on set \(S\) is \emph{symmetric} if \(\sforall a,b\in S\:(a,b)\in R\Rightarrow(b,a)\in R\).
+\end{definition}
+
+\bigskip
+\begin{definition}
+    A relation \(R\) on set \(S\) is \emph{transitive} if \(\sforall a,b,c\in S\:(a,b)\in R\land(b,c)\in R\Rightarrow(a,c)\in R\).
+\end{definition}
+
+\subsubsection{Written Examples}
+Let \(S=\) the set of people. Let relation \(R=\) ``is brother of.'' This relation is neither reflexive, symmetric, nor transitive:
+\begin{itemize}
+    \item \(R\) is not reflexive because it is not possible for one to be their own brother.
+    \item \(R\) is not symmetric because if \(a\in S\) is female and \(b\in S\) is male, then \((a,b)\in R\) but \((b,a)\not\in R\) because \(a\) is 
+    \(b\)'s sister.
+    \item \(R\) is not transitive because if \(a,b\in S\) are brothers, then \((a,b)\in R\) and \((b,a)\in R\). This implies according to transitivity that
+    \((a,a)\in R\), but this is false because you cannot be your own brother. Therefore, \(R\) is not transitive. 
+\end{itemize}
+
+Let \(S=\) the set of people. Let \(R=\) ``is sibling of.'' This relation is not reflexive or transitive, but it is symmetric:
+\begin{itemize}
+    \item \(R\) is not reflexive because it is impossible for one to be their own sibling.
+    \item \(R\) is symmetric because if \(a,b\in S\) are siblings, then \((a,b)\in R\) and \((b,a)\in R\).
+    \item \(R\) is not transitive because if \(a,b\in S\), then \((a,b)\in R\) and \((b,a)\in R\). Transitivity would imply \((a,a)\in R\), but again \(a\)
+    cannot be their own sibling. Therefore, \(R\) is not transitive. 
+\end{itemize}
+
+\subsubsection{Graphical Examples}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of non-reflexive, non-symmetric, non-transitive relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (5.,4.)-- (9.,0.);
+            \draw [->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+\begin{figure}[H]
+    \centering 
+    \textbf{Example of non-reflexive, non-symmetric, transitive relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (5.,4.)-- (9.,0.);
+            \draw [->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (5.,4.)-- (5.,-4.);
+            \draw [->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of non-reflexive, symmetric, non-transitive relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (5.,4.)-- (9.,0.);
+            \draw [<->,line width=2.pt, shorten >=3.pt, shorten <=3.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Examples of non-reflexive, symmetric, transitive relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+    \hspace*{5em}
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,shift={(5.,6.)},line width=2.pt]  plot[domain=-0.5235987755983:3.6651914291880927,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,shift={(5.,-6.)},line width=2.pt]  plot[domain=-3.6651914291880927:0.5235987755982998,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of reflexive, symmetric, non-transitive relation}
+
+    \resizebox{12em}{8em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.,-2.) rectangle (13.,8.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,shift={(5.,6.)},line width=2.pt]  plot[domain=-0.5235987755983:3.6651914291880927,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt,line width=2.pt] (5.,4.)-- (1.,0.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+
+\subsubsection{Back to Definitions}
+
+\begin{definition}
+    A relation \(R\) on set \(S\) is an \emph{equivalence relation}\index{Set Theory!Equivalence Relation} if it is reflexive, symmetric, and transitive.
+\end{definition}
+
+\bigskip
+\begin{definition}
+    Given equivalence relation \(R\subseteq S\times S\) of set \(S\), the \emph{equivalence class} of \(a\in A\) is \(\setbuild{x\in A}{(x,a)\in R}\). The elements
+    of this set is said to be \emph{equivalent} to \(a\).\footnote{This definition comes from David S. Dummit's \& Richard M. Foote's \emph{Abstract Algebra}}
+\end{definition}
+
+\bigskip
+\begin{definition}
+    A \emph{partition} of \(A\) is any collection \(\setbuild{A_i}{i\in I}\) of nonempty subsets of \(A\) (\(I\) is some indexing set) such that
+    \(A=\bigcup_{i\in I}A_i\) and \(A_i\cap A_j=\emptyset\sforall i,j\in I\:i\ne j\). In other words, \(A\) is the disjoint union of all the sets in the partition.
+    \footnote{ditto.}
+\end{definition}
+
+\bigskip
+\begin{proposition}
+    Given equivalence relation \(R\), then the set of equivalence classes of \(R\) forms a partition of \(A\).
+\end{proposition}
+\begin{proof}
+    Let \(K=\setbuild{A_i}{i\in I}\) be the set of equivalence classes of equivalence relation \(R\) where \(A_i\) is an equivalence class. Therefore, it needs to be 
+    proven that \(A=\bigcup_{i\in I}A_i\) and \(A_i\cap A_j=\emptyset\sforall i,j\in I\:i\ne j\).
+
+    Assume \(A\ne\bigcup_{i\in I}A_i\). Therefore, there exists \(n\in A\) such that \(\forall\:i\in I\:n\not\in A_i\). However, \(R\) is an equivalence relation, meaning
+    it is reflexive which implies \((n,n)\in R\). Therefore, \(n\) belongs to the equivalence class \(\setbuild{x\in A}{(x,n)\in R}\). However, \(K\) is defined to contain
+    all equivalence classes, meaning \(\exists\:i\in I\: n\in A_i\). This contradicts that \(n\) is not in any equivalence class. Therefore, by contradiction,
+    \(A=\bigcup_{i\in I}A_i\).
+    
+    Assume for some \(i,j\in I\:i\ne j\), \(A_i\cap A_j=P\) where \(P\) is a nonempty set. Therefore, \(\exists\:p\in P\) such that \(p\in A_i\) and \(p\in A_j\). By
+    definition of the equivalence classes, \((p,y)\in R\) for any \(y\in A_i\) and \((p,z)\in R\) for any \(z\in A_j\). Applying the symmetric property, \((y,p)\in R\)
+    as well. Now applying the transitive property yields \((y,z)\in R\). This means that \(y,z\) are in the same equivalence class. Therefore, \(A_i=A_j\) since all elements
+    since all elements between the two are equivalent to each other. However, this contradicts how \(A_i\ne A_j\) since \(i\ne j\). Thus, \(A_i\cap A_j=\emptyset\).
+
+    In conclusion, \(K\) is a partition of \(A\), and it is said that the equivalence relation on \(A\) partitions the set \(A\).
+\end{proof}
+
+\bigskip
+\begin{proposition}
+    If \(\setbuild{A_i}{i\in I}\) is a partition of set \(A\). Then, there exists an equivalence relation \(R\) on set \(S\) whose equivalence classes are \(A_i\sforall i\in I\).
+    \footnote{I am not doing this proof.}
+\end{proposition}
+
+\subsubsection{Examples}
+Proposition \thechapter.2 states that if there exists a partition on a set, then there must exist an equivalence relation. Therefore, equivalence 
+relations are common:
+\begin{itemize}
+    \item Let \(S=\) set of species and binary relation \(R=\)``is the same species as.'' This is an equivalence relation.
+    \item Let \(S=\mathbb{Z}\) and the equivalence relation \(R=\)``has the same remainder modulo \(m\).''
+    \footnote{This is an ubiquitous example of equivalence relation. More on this later.}
+    \item Let \(S=\mathbb{Z}\) and the equivalence relation \(R=\)``equals.''
+    \item Let \(S=\) set of all people and equivalence relation \(R=\)``same age as.''
+\end{itemize} 
+
+Equivalence relationship formed by remainder when dividing by \(m\) is crucial in many mathematical studies such as number theory.
+Modular arithmetic\index{Modular Arithmetic!Modular Congruences} is primarily focused on the binary equivalence relation called modular
+congruences.
+
+\begin{definition}
+    Given \(a,b\in\mathbb{Z}\), \(a\) is congruent to \(b\) modulo \(m\), i.e.\ \(\modcong{a}{b}{m}\), if \(m\mid a-b\).
+\end{definition}
+
+The \(\mid\) symbol means ``divides.'' Therefore, \(\modcong{a}{b}{m}\) if \(m\) divides the difference between \(a\) and \(b\).
+
+\begin{proposition}
+    \(m\mid a-b\) is an equivalence relation on \(\mathbb{Z}\).
+\end{proposition}
+\begin{proof}
+    To prove that \(m\mid a-b\) is an equivalence relation \(R\), all the properties need to be proven:
+    \begin{itemize}
+        \item \(\forall\:a\in\mathbb{Z}\:m\mid a-a\) which is logically equivalent to \(m\mid 0\) which is always true.
+        Therefore, \(\forall\:a\in\mathbb{Z}\:(a,a)\in R\). This proves reflexive property.
+        \item Given \((a,b)\in R\), then \(m\mid a-b\). Multiplying \(a-b\) by \(-1\) yields \(b-a\). Therefore, \(m\mid b-a\)
+        and \((b,a)\in R\sforall a,b\in\mathbb{Z}\). This proves the symmetric property.
+        \item Given \((a,b)\in R\) and \((b,c)\in R\). By definition, \(m\mid a-b\) and \(m\mid b-c\). Therefore, \(m\mid(a-b)+(b-c)\)
+        which yields \(m\mid a-c\) meaning \((a,c)\in R\sforall a,b,c\in\mathbb{Z}\). This proves the transitive property. 
+    \end{itemize}
+    Therefore, \(m\mid a-b\) is an equivalence relation.
+\end{proof}
+
+\textbf{Note:} The definition of the relation as \(m\mid a-b\) is different from the above definition as having the same remainder.
+Thinking more about it, it should be clear that if two numbers \(a,b\) have the same remainder, then \(m\mid a-b\) and it satisfies the 
+relation. However, this definition is more mathematical and allows us to perform operations like the ones shown above to prove properties.
+Additionally, the idea of modular congruence extends beyond the integers (like into integer polynomials and Gaussian integers). In some
+cases, like the Gaussian integers, there are some ambiguity over the definition of remainder, i.e.\ there may be more than one valid 
+quotient and remainder. This definition avoids this issue.\footnote{Number theory is very interesting.}
+
+\subsubsection{Graphical Examples}
+
+\begin{figure}[H]
+    \centering
+    \textbf{Examples of equivalence relation}
+
+    \resizebox{10em}{10em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(5.,6.)},line width=2.pt]  plot[domain=-0.5235987755983:3.6651914291880927,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(5.,-6.)},line width=2.pt]  plot[domain=-3.6651914291880927:0.5235987755982998,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+    \hspace*{3em}
+    \resizebox{10em}{10em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, shift={(5.,6.)},line width=2.pt]  plot[domain=-0.5235987755983:3.6651914291880927,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, shift={(5.,-6.)},line width=2.pt]  plot[domain=-3.6651914291880927:0.5235987755982998,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (5.,4.)-- (1.,0.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (1.,0.)-- (9.,0.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (1.,0.)-- (5.,-4.);
+            \draw [<->,shorten >=3.pt,shorten <=3.pt, line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+
+    \resizebox{10em}{10em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(5.,6.)},line width=2.pt]  plot[domain=-0.5235987755983:3.6651914291880927,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(5.,-6.)},line width=2.pt]  plot[domain=-3.6651914291880927:0.5235987755982998,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+
+\subsection{More Properties of Relations}
+
+\begin{definition}
+    A relation \(R\subseteq S\times S\) on set \(S\) is \emph{asymmetric} if \(\forall\:x,y\in S\:(x,y)\in R\Rightarrow(y,x)\not\in R\).
+\end{definition}
+
+Intuitively, the relation is one-directional. Additionally, a relation that is asymmetric cannot be reflexive (having self-loops) as asymmetry
+implies if \((a,a)\in S\) then \((a,a)\not\in S\).
+
+\bigskip
+\begin{definition}
+    A relation \(R\subseteq S\times S\) on set \(S\) is \emph{antisymmetric} if \(\forall\:x,y\in S\:(x\ne y)\land(x,y)\in R\Rightarrow(y,x)\not\in R\).
+\end{definition}
+
+Intuitively, the relation is one-directional, but also allows for self-loops. An antisymmetric relation can be reflexive since
+if \((a,b)\in R\) and \((b,a)\in R\), antisymmetry would imply that \(a=b\). Additionally, asymmetry implies antisymmetry.
+
+\subsubsection{Graphical Examples}
+
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Transitive and Asymmetric Relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (1.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Transitive and Antisymmetric Relation}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.,-8.) rectangle (13.,7.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(5.,-6.)},line width=2.pt]  plot[domain=-3.6651914291880927:0.5235987755982998,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (1.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+
+\subsection{Partial and Total Order}
+\index{Set Theory!Partial Order}
+\index{Set Theory!Total Order}
+
+\begin{definition}
+    A \emph{partial order} is a relation \(R\) on set \(S\) that is transitive, reflexive, and antisymmetric. 
+\end{definition}
+
+Partial orders may also called \emph{weak partial order}, \emph{reflexive partial order}, or \emph{non-strict partial order}.
+A simple example of partial order is the relation \(R=\)``greater than or equal to'' on set \(S=\mathbb{Z}\). Reflexivity is
+satisfied because \(\forall\:x\in\mathbb{Z}\:x\ge x\). Antisymmetry is satisfied as 
+\(\forall\:x,y\in\mathbb{Z}\:x\ne y\land(x\ge y)\Rightarrow\lnot(y\ge x)\). Additionally, transitivity is satisfied as
+\(\forall\:x,y,z\in\mathbb{Z}\:(x\ge y)\land(y\ge z)\Rightarrow(x\ge z)\). This concludes that relation \(R\) is partially
+ordered.
+
+\bigskip
+\begin{definition}
+    A \emph{strict partial order} is a relation \(R\) on set \(S\) that is transitive and asymmetric.    
+\end{definition}
+
+A simple example of strict partial order is with relation \(R=\)``less than'' on set \(S=\mathbb{Z}\). The proof is similar to the
+above, but modified to fit the properties of transitivity and asymmetry. 
+
+\bigskip
+\begin{definition}
+    A \emph{strict total order} \(\prec\) is a strict partial order where \(\forall\:x,y\in S\:(x\ne y)\Rightarrow(x\prec y)\lor(y\prec x)\).
+\end{definition}
+
+Intuitively, in the graph diagram, all nodes must be connected to the other nodes in either direction. Additionally, the nodes can 
+be rearranged into a line where the order is defined as the position of a node relative to another.
+
+\subsubsection{Graphical Examples}
+
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Strict Partial Order}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (1.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Weak Partial Order}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.,-8.) rectangle (13.,8.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(5.,6.)},line width=2.pt]  plot[domain=-0.5235987755983:3.6651914291880927,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(5.,-6.)},line width=2.pt]  plot[domain=-3.6651914291880927:0.5235987755982998,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (1.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Strict Total Order}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (1.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (9.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+
+    In this example, the order of the nodes on a line from left to right would be \(A\prec D\prec B\prec C\).
+\end{figure}
