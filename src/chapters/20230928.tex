@@ -1,0 +1,444 @@
+\lecturechapter{Written by Jeffrey J.}
+
+\section{Set Theory: Ordering and Relations}
+\index{Set Theory!Relations}
+
+\subsection{More on Ordering}
+
+Given relation \(R\) on set \(S\) that is an order, the relation is strict if \(\forall\:a\in S\:(a,a)\not\in R\). This means that there are no
+``self-loops.'' The relation \(R\) is strict if the relation is reflexive, i.e.\ \(\forall\:a\in S\:(a,a)\in R\). This means for all nodes, there
+are ``self-loops.'' 
+
+Relation \(R\) on set \(S\) is an order if there is a way to write the nodes so that all edges except self-loops point in the same direction. This
+implies that there are some sort of ordering to the nodes since they are be arranged in such. This order is a total order\index{Set Theory!Total Order} 
+if there is only one possible ordering. In contrast, the order is a partial order\index{Set Theory!Partial Order} if there are more than one possible 
+orderings. 
+
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Strict Partial Order}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (1.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+    
+    In this example, the two possible orderings are \(A\prec B\prec C\) or \(A\prec D\prec C\).
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Strict Total Order}
+
+    \resizebox{12em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.,-7.) rectangle (12.,7.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,-5.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (9.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (5.,4.)-- (1.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (9.,0.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (5.,-4.);
+            \draw [->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (9.,0.)-- (5.,-4.);
+            \draw (4.6,5.4) node[anchor=north west] {\LARGE$A$};
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (4.6,-4.7) node[anchor=north west] {\LARGE$C$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+
+    In this example, there is only one possible ordering which is \(A\prec D\prec B\prec C\).
+\end{figure}
+
+\textbf{Note}: The relation may be a total or partial order depending on the the set the relation operates on. For example,
+consider the relation \(R=``\le"\) on the set \(S=\mathbb{Z}\). This is a total relation because the order is fixed. Between
+every two integers, they have a one-directional relation between the two. However, let \(S=\text{``Set of people"}\) and relation
+\(R=``is taller than"\) on set \(S\). Since there are people who are of equal height, then there are many different possible orderings
+of people. This makes the relation a partial order.
+
+\subsection{Return to Relations}
+
+\begin{proposition}
+    On set \(S\), there are \(2^{|S|^2}\) binary relations on the set.
+\end{proposition}
+\begin{proof}
+    The definition of the relation \(R\) on set \(S\) is that \(R\subseteq S\times S\). Therefore the total number of binary relations
+    on set \(S\) is the number of the possible subsets of \(S\times S\). The set of subsets is represented by the power set of \(S\times S\) 
+    or \(\mathcal{P}(S\times S)\). The total number of binary relations is \(|\mathcal{P}(S\times S)|=2^{|S\times S|}=2^{|S|^2}\). Proposition
+    \(4.2\) and proposition \(4.4\) is used to derive \(2^{|S|^2}\).
+\end{proof}
+
+\bigskip
+\begin{definition}
+    The \emph{transitive closure}\index{Set Theory!Transitive Closure} of a binary relation \(R\) on set \(S\) is the smallest relation on \(S\) that 
+    includes \(R\) and is transitive. This relation is denoted \(R^{TC}\).
+\end{definition}
+
+The transitive closure of relation \(R\) on set \(S\) but with additional elements of \(S\times S\) that makes \(R^{TC}\) transitive. Intuitively, let
+\(S=\text{``locations"}\) and relation \(R=\text{``exists direct road between"}\) on set \(S\). Clearly, this relation is not necessarily transitive.
+However, \(R^{TC}\) represents the relation that the two locations are reachable by road. This relation is clearly transitive and modifies \(R\).
+Additionally, clearly from the definition, if relation \(R\) is transitive, \(R=R^{TC}\).
+
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Transitive Closure}
+
+    Relation \(R\)
+
+    \resizebox{20em}{5em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.,-2.) rectangle (13.,2.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (9.,0.);
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+
+    Relation \(R^{TC}\)
+
+    \resizebox{20em}{5em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.,-2.) rectangle (13.,2.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [blue,<->,shorten <=3.pt,shorten >=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (9.,0.);
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Transitive Closure}
+
+    Relation \(R\)
+
+    \resizebox{21em}{5em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-4.,-1.) rectangle (4.5,1.);
+            \draw [line width=1.pt] (-3.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (-1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (3.,0.) circle (0.5cm);
+            \draw (-3,0) node[anchor=center] {$A$};
+            \draw (-1,0) node[anchor=center] {$B$};
+            \draw (1,0) node[anchor=center] {$C$};
+            \draw (3,0) node[anchor=center] {$D$};
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-2.5,0.)-- (-1.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-0.5,0.)-- (0.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (1.5,0.)-- (2.5,0.);
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(3.5,0.)},line width=1.pt]  plot[domain=-2.0943951023931957:2.0943951023931957,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+        \end{tikzpicture}
+    }
+
+    Relation \(R^{TC}\)
+
+    \resizebox{21em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-4.5,-3.25) rectangle (4.5,2.);
+            \draw [line width=1.pt] (-3.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (-1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (3.,0.) circle (0.5cm);
+            \draw (-3,0) node[anchor=center] {$A$};
+            \draw (-1,0) node[anchor=center] {$B$};
+            \draw (1,0) node[anchor=center] {$C$};
+            \draw (3,0) node[anchor=center] {$D$};
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-2.5,0.)-- (-1.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-0.5,0.)-- (0.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (1.5,0.)-- (2.5,0.);
+            \draw [blue,<-,>=stealth,shorten <=3.pt,shorten >=3.pt,shift={(-1.,-0.5)},line width=1.pt]  plot[domain=0.4636476090008061:2.677945044588987,variable=\t]({1.*2.23606797749979*cos(\t r)+0.*2.23606797749979*sin(\t r)},{0.*2.23606797749979*cos(\t r)+1.*2.23606797749979*sin(\t r)});
+            \draw [blue,->,>=stealth,shorten <=3.pt,shorten >=3.pt,shift={(1.,0.5)},line width=1.pt]  plot[domain=3.6052402625905993:5.81953769817878,variable=\t]({1.*2.23606797749979*cos(\t r)+0.*2.23606797749979*sin(\t r)},{0.*2.23606797749979*cos(\t r)+1.*2.23606797749979*sin(\t r)});
+            \draw [blue,->,>=stealth,shorten <=3.pt,shorten >=3.pt,shift={(0.,0.)},line width=1.pt]  plot[domain=3.30674133100442:6.118036629764959,variable=\t]({1.*3.0413812651491092*cos(\t r)+0.*3.0413812651491092*sin(\t r)},{0.*3.0413812651491092*cos(\t r)+1.*3.0413812651491092*sin(\t r)});
+            \draw [blue,<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(-3.5,0.)},line width=1.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(3.5,0.)},line width=1.pt]  plot[domain=-2.0943951023931957:2.0943951023931957,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+            \draw [blue,<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(-1.,0.5)},line width=1.pt]  plot[domain=-0.5235987755982991:3.6651914291880923,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+        \end{tikzpicture}
+    }
+\end{figure}
+
+Closure can be defined for other properties:
+
+\begin{definition}
+    Given \(X\in\set{\text{``transitive'', ``symmetric", ``reflexive", ``reflexive and transitive''}}\), the \(X\) closure \index{Set Theory!Closure on Relations}of binary relation \(R\) 
+    on set \(S\) is the smallest relation on \(S\) that includes \(R\) and has property \(X\).
+\end{definition}
+
+Transitivity is interesting as it represents the idea of reachability. 
+
+\bigskip
+\begin{definition}
+    The \emph{transitive reduction}\index{Set Theory!Transitive Reduction} of a binary relation \(R\) on set \(S\) is the smallest relation \(R^*\) on \(S\) where \((R^*)^{TR}=R^{TR}\).
+\end{definition}
+
+Intuitively, transitive reduction is the action of removing elements of \(S\times S\) from the relation such that the transitive closure would still remain the same. 
+
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Transitive Reduction}
+
+    Relation \(R\)
+
+    \resizebox{20em}{5em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.,-2.) rectangle (13.,2.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (9.,0.);
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+
+    Relation \(R^*\)
+
+    \resizebox{20em}{5em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.,-2.) rectangle (13.,2.);
+            \draw [line width=2.pt] (0.,0.) circle (1.cm);
+            \draw [line width=2.pt] (10.,0.) circle (1.cm);
+            \draw [red,<->,shorten <=3.pt,shorten >=3.pt,shift={(11.,0.)},line width=2.pt]  plot[domain=-2.094395102393194:2.094395102393194,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [red,<->,shorten <=3.pt,shorten >=3.pt,shift={(-1.,0.)},line width=2.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<->,shorten <=3.pt,shorten >=3.pt,line width=2.pt] (1.,0.)-- (9.,0.);
+            \draw (9.6,0.4) node[anchor=north west] {\LARGE$B$};
+            \draw (-0.3,0.4) node[anchor=north west] {\LARGE$D$};
+        \end{tikzpicture}
+    }
+
+    The red arrows denote removed elements of relation \(R\).
+    \newline In this example, \(R\) is transitive already. 
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Transitive Reduction}
+
+    Relation \(R\)
+
+    \resizebox{21em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-4.5,-3.25) rectangle (4.5,2.);
+            \draw [line width=1.pt] (-3.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (-1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (3.,0.) circle (0.5cm);
+            \draw (-3,0) node[anchor=center] {$A$};
+            \draw (-1,0) node[anchor=center] {$B$};
+            \draw (1,0) node[anchor=center] {$C$};
+            \draw (3,0) node[anchor=center] {$D$};
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-2.5,0.)-- (-1.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-0.5,0.)-- (0.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (1.5,0.)-- (2.5,0.);
+            \draw [<-,>=stealth,shorten <=3.pt,shorten >=3.pt,shift={(-1.,-0.5)},line width=1.pt]  plot[domain=0.4636476090008061:2.677945044588987,variable=\t]({1.*2.23606797749979*cos(\t r)+0.*2.23606797749979*sin(\t r)},{0.*2.23606797749979*cos(\t r)+1.*2.23606797749979*sin(\t r)});
+            \draw [->,>=stealth,shorten <=3.pt,shorten >=3.pt,shift={(1.,0.5)},line width=1.pt]  plot[domain=3.6052402625905993:5.81953769817878,variable=\t]({1.*2.23606797749979*cos(\t r)+0.*2.23606797749979*sin(\t r)},{0.*2.23606797749979*cos(\t r)+1.*2.23606797749979*sin(\t r)});
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(-3.5,0.)},line width=1.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(3.5,0.)},line width=1.pt]  plot[domain=-2.0943951023931957:2.0943951023931957,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+        \end{tikzpicture}
+    }
+
+    Relation \(R^*\)
+
+    \resizebox{21em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-4.5,-3.25) rectangle (4.5,2.);
+            \draw [line width=1.pt] (-3.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (-1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (3.,0.) circle (0.5cm);
+            \draw (-3,0) node[anchor=center] {$A$};
+            \draw (-1,0) node[anchor=center] {$B$};
+            \draw (1,0) node[anchor=center] {$C$};
+            \draw (3,0) node[anchor=center] {$D$};
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-2.5,0.)-- (-1.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-0.5,0.)-- (0.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (1.5,0.)-- (2.5,0.);
+            \draw [red,<-,>=stealth,shorten <=3.pt,shorten >=3.pt,shift={(-1.,-0.5)},line width=1.pt]  plot[domain=0.4636476090008061:2.677945044588987,variable=\t]({1.*2.23606797749979*cos(\t r)+0.*2.23606797749979*sin(\t r)},{0.*2.23606797749979*cos(\t r)+1.*2.23606797749979*sin(\t r)});
+            \draw [red,->,>=stealth,shorten <=3.pt,shorten >=3.pt,shift={(1.,0.5)},line width=1.pt]  plot[domain=3.6052402625905993:5.81953769817878,variable=\t]({1.*2.23606797749979*cos(\t r)+0.*2.23606797749979*sin(\t r)},{0.*2.23606797749979*cos(\t r)+1.*2.23606797749979*sin(\t r)});
+            \draw [red,<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(-3.5,0.)},line width=1.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(3.5,0.)},line width=1.pt]  plot[domain=-2.0943951023931957:2.0943951023931957,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+        \end{tikzpicture}
+    }
+
+    Note that \(R\) is not transitive.
+\end{figure}
+
+\section{Algorithms for Computing Transitive Closure}
+
+There are some algorithmic methods of calculating the transitive closure.
+
+\subsection{The Naive Approach}
+Given relation \(R\) on set \(S\), transitivity states that \(\forall\:a,b,c\in S\:(a,b)\in R\land (b,c)\in R\Rightarrow(a,c)\in R\). First let \(R^{TC}=R\).
+Then, the algorithm involves looping through all the elements of \(S\) for elements \(a,b,c\) and determining if \((a,b)\in R^{TC}\) and \((b,c)\in R^{TC}\). 
+If so, then the new relation will have \((a,c)\in R^{TC}\). However, this new relation will cause new transitive relations to be required in \(R^{TC}\). 
+The algorithms continues to loop through \(S\). The result will be that \(R^{TC}\) is the transitive closure of \(R\). This process will take \(\mathcal{O}(n^4)\).
+
+\subsection{Depth-First Search Approach}
+A depth-first search approach (typically implemented through recursion) essentially involves determining all the nodes that are "reachable" from a node. A node
+is reachable, if it is either in the relation or there is a ``path'' to the node through transitivity. This process will take \(\mathcal{O}(n^3)\).
+
+\subsection{Adjacency Matrix Approach}
+The relation \(R\) on set \(S\) is represented graphically. This graph can then be interpreted as an \emph{adjacency matrix}.\footnote{More information on the adjacency
+matrix can be found the following pages of these textbooks:\\Alan Tucker's ``Introduction to Linear Algebra: Models, Methods, and Theory" Section 2.3 p.99\\
+Gilbert Strang's ``Introduction to Linear Algebra" Section 2.4 p.76} The adjacency matrix will be a \(|S|\times|S|\) matrix with \(1\) in entries corresponding to an 
+element of \(x\in S\times S\) where \(x\in R\), and \(0\) elsewhere. The \(1\)s represent that there is one ``path'' from the two nodes that can be taken in one step. 
+Take the following example:
+\[S=\set{A,B,C,D}\]
+\[R\subseteq S\times S\]
+\[R=\set{(A,B),(B,A),(B,C),(C,D),(D,D)}\]
+The relation is represented by the following graph:
+\begin{figure}[H]
+    \centering
+    \textbf{Relation \(R\) on set \(S\)}
+
+    \resizebox{21em}{5em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-4.,-1.) rectangle (4.5,1.);
+            \draw [line width=1.pt] (-3.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (-1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (3.,0.) circle (0.5cm);
+            \draw (-3,0) node[anchor=center] {$A$};
+            \draw (-1,0) node[anchor=center] {$B$};
+            \draw (1,0) node[anchor=center] {$C$};
+            \draw (3,0) node[anchor=center] {$D$};
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-2.5,0.)-- (-1.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-0.5,0.)-- (0.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (1.5,0.)-- (2.5,0.);
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(3.5,0.)},line width=1.pt]  plot[domain=-2.0943951023931957:2.0943951023931957,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+        \end{tikzpicture}
+    }
+\end{figure}
+The adjacency matrix \(A\) of relation \(R\) is:
+\[A=\begin{bmatrix}
+    0 & 1 & 0 & 0 \\
+    1 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 1
+\end{bmatrix}\] 
+However, the matrix needs to be modified. Currently, the matrices represent the possible paths between the
+two nodes, but this always requires a traversal through an edge of the graph (an element of the relation).
+The identity matrix \(I\) will be added to \(A\). This identity matrix will encode the new action of ``staying
+in place.'' This will add a new ``path'' for elements to remain in place. 
+\begin{align*}
+    M&=A+I \\ 
+     &=\begin{bmatrix}
+        1 & 1 & 0 & 0 \\
+        1 & 1 & 1 & 0 \\
+        0 & 0 & 1 & 1 \\
+        0 & 0 & 1 & 2
+     \end{bmatrix}
+\end{align*}
+I will denote entry of matrix \(M\) on row \(i\) and column \(j\) as \(M_{i,j}\). Some things to note about this 
+new matrix:
+\begin{itemize}
+    \item Note that \((A,A)\not\in R\), but \(M_{1,1}=1\). This \(1\) represents how there is one way to reach \(A\)
+    from \(A\), i.e.\ staying at \(A\).
+    \item Also note that \(M_{4,4}=2\). This represents how there are now two ways to reach \(D\) from \(D\). The first
+    is to follow the path represented by \((D,D)\in R\). The other way is simply not from that node at all.
+\end{itemize}
+The benefits of the adjacency matrix is that its powers encode the number of paths between two nodes. For example,
+\(M^2\) will encode the number of ways you can travel from two nodes in two steps (I am using step synonymously with
+an action. This includes taking a path defined in the relation or staying in place). \(M^3\) encodes the number of ways
+you can travel between two nodes in three steps. Generally, \(M^n\) encodes the number of ways you can travel between
+two nodes in \(n\) steps. These paths are important as transitivity would imply there is a direct path between the two
+nodes. Thus, \(M^n\) will fill in the entries that the transitive closure will have.
+
+Because there are \(4\) nodes in the example, \(M^4\) will be adequate to compute enough information to compute the
+transitive closure matrix. Generally, \(M^{|S|}\) will be enough. Extra matrix multiplications will not affect the
+general makeup of the computed matrix. I am going to be using MATLAB to compute the matrix:
+\begin{lstlisting}[language=Matlab]
+A=[0,1,0,0;
+   1,0,1,0;
+   0,0,0,1;
+   0,0,0,1];
+M=A+eye(4);   
+disp(M^4); 
+\end{lstlisting}
+This yields the following matrix:
+\[M^4=\begin{bmatrix}
+    8 & 8 & 7 &  5 \\
+    8 & 8 & 8 & 12 \\
+    0 & 0 & 1 & 15 \\
+    0 & 0 & 0 & 16
+\end{bmatrix}\]
+The most important part to note is that the diagonal count an extra path. This path originates from when we added the identity
+matrix to \(A\). For example, \(M^4_{3,3}=1\) means there is one path from node \(C\) to itself that is taken in four steps.
+This path is simply doing nothing for four steps. This path should not be represented in adjacency matrix for transitive closure.
+Therefore, this possible path needs to be removed from \(M^4\). This is simply done by subtracting the identity matrix
+from the result, i.e.\ \(M^4-I\). 
+\[M^4-I=\begin{bmatrix}
+    7 & 8 & 7 &  5 \\
+    8 & 7 & 8 & 12 \\
+    0 & 0 & 0 & 15 \\
+    0 & 0 & 0 & 15
+\end{bmatrix}\]
+Therefore, the transitive closure can be derived from this adjacency matrix:
+\[R^{TC}=\set{(a,a),(a,b),(a,c),(a,d),(b,a),(b,b),(b,c),(b,d),(c,d),(d,d)}\]
+
+\begin{figure}[H]
+    \centering
+    \textbf{Relation \(R^{TC}\)}
+
+    \resizebox{21em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-4.5,-3.25) rectangle (4.5,2.);
+            \draw [line width=1.pt] (-3.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (-1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (1.,0.) circle (0.5cm);
+            \draw [line width=1.pt] (3.,0.) circle (0.5cm);
+            \draw (-3,0) node[anchor=center] {$A$};
+            \draw (-1,0) node[anchor=center] {$B$};
+            \draw (1,0) node[anchor=center] {$C$};
+            \draw (3,0) node[anchor=center] {$D$};
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-2.5,0.)-- (-1.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (-0.5,0.)-- (0.5,0.);
+            \draw [->,>=stealth,shorten <=1.pt,shorten >=1.pt,line width=1.pt] (1.5,0.)-- (2.5,0.);
+            \draw [<-,>=stealth,shorten <=3.pt,shorten >=3.pt,shift={(-1.,-0.5)},line width=1.pt]  plot[domain=0.4636476090008061:2.677945044588987,variable=\t]({1.*2.23606797749979*cos(\t r)+0.*2.23606797749979*sin(\t r)},{0.*2.23606797749979*cos(\t r)+1.*2.23606797749979*sin(\t r)});
+            \draw [->,>=stealth,shorten <=3.pt,shorten >=3.pt,shift={(1.,0.5)},line width=1.pt]  plot[domain=3.6052402625905993:5.81953769817878,variable=\t]({1.*2.23606797749979*cos(\t r)+0.*2.23606797749979*sin(\t r)},{0.*2.23606797749979*cos(\t r)+1.*2.23606797749979*sin(\t r)});
+            \draw [->,>=stealth,shorten <=3.pt,shorten >=3.pt,shift={(0.,0.)},line width=1.pt]  plot[domain=3.30674133100442:6.118036629764959,variable=\t]({1.*3.0413812651491092*cos(\t r)+0.*3.0413812651491092*sin(\t r)},{0.*3.0413812651491092*cos(\t r)+1.*3.0413812651491092*sin(\t r)});
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(-3.5,0.)},line width=1.pt]  plot[domain=1.0471975511965976:5.235987755982989,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(3.5,0.)},line width=1.pt]  plot[domain=-2.0943951023931957:2.0943951023931957,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+            \draw [<->,>=stealth,shorten <=1.pt,shorten >=1.pt,shift={(-1.,0.5)},line width=1.pt]  plot[domain=-0.5235987755982991:3.6651914291880923,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+        \end{tikzpicture}
+    }
+\end{figure}
+In conclusion, the algorithm works as follows; given relation \(R\) on set \(S\), let \(A\) be the adjacency matrix of
+\(R\). The transitive closure of \(R\) is represented by the adjacency matrix \((A+I)^{|S|}-I\).
+
+Matrix multiplication typically done in \(\mathcal{O}(n^3)\). There are algorithms that exist that can perform matrix multiplication
+with a lower time complexity like the Strassen Algorithm which has approximately \(\mathcal{O}(n^{2.81})\). However, since it is 
+asymptomatic behavior being described, the Strassen Algorithm slower than the original approach when it pertains to smaller matrices.
+\footnote{If you are interested in more pragmatic algorithms for matrix multiplication, see https://en.algorithmica.org/hpc/algorithms/matmul/}
+Matrix multiplication is clearly an expensive operation. Therefore, it is important to reduce the number of required matrix multiplications.
+
+To reduce the number of required matrix multiplication, the product \(M^{|S|}\) can be computed in the same way as it is done in integer
+binary exponentiation. Therefore, this process takes \(\mathcal{O}(\log_2n)\). In conclusion, this algorithm will have 
+\(\mathcal{O}(\log n\epsilon)\) where \(\epsilon\) is the time complexity for the matrix multiplication operation. 
+
+As an aside, \((A+I)^{|S|}-I\) can be expanded.
+\[(A+I)^{|S|}-I=\sum_{i=1}^{|S|}A^i\]
+Intuitively, this equation can be viewed as the sum of all the number of paths between two nodes that takes one to \(|S|\) steps.
+If such an indirect path between two nodes exist, then the transitive closure will have a direct path between the two nodes. Therefore,
+\(\sum_{i=1}^{|S|}A^i\) represents the adjacency matrix for the transitive closure.
