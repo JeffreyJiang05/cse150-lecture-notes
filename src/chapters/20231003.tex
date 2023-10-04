@@ -1,0 +1,463 @@
+\lecturechapter{Written by Jeffrey J.}
+
+\section{Introduction to Functions}
+\index{Functions}
+
+\subsection{Basic Definition}
+
+\begin{definition}
+    A \emph{function} \(f:\:S\rightarrow T\) is a relation \(f\subseteq S\times T\) such that \(\forall\:s\in S\:\exists!\: t\in T\ (s,t)\in f\).
+\end{definition}
+
+Notation-wise, \((s,t)\in f\) can be written as \(f(s)=t\). A function can be represented graphically:
+\begin{figure}[H]
+    \centering
+    \textbf{Example of a Function}
+
+    \resizebox{16em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.5,-1.5) rectangle (3.5,3.5);
+            \draw [rotate around={90.:(-2.,0.5)},line width=2.pt] (-2.,0.5) ellipse (1.825140769936443cm and 1.039778260055571cm);
+            \draw [rotate around={90.:(2.,0.5)},line width=2.pt] (2.,0.5) ellipse (1.825140769936443cm and 1.039778260055571cm);
+            \draw (-2,3) node[anchor=center] {\LARGE$S$};
+            \draw (2,3) node[anchor=center] {\LARGE$T$};
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt, line width=2.pt] (-2.,2.)-- (2.,2.);
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt, line width=2.pt] (-2.,1.)-- (2.,2.);
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt, line width=2.pt] (-2.,0.)-- (2.,0.);
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt, line width=2.pt] (-2.,-1.)-- (2.,-1.);
+            \begin{scriptsize}
+            \draw [fill=black] (-2.,2.) circle (3pt);
+            \draw [fill=black] (-2.,1.) circle (3pt);
+            \draw [fill=black] (-2.,0.) circle (3pt);
+            \draw [fill=black] (-2.,-1.) circle (3pt);
+            \draw [fill=black] (2.,2.) circle (3pt);
+            \draw [fill=black] (2.,1.) circle (3pt);
+            \draw [fill=black] (2.,0.) circle (3pt);
+            \draw [fill=black] (2.,-1.) circle (3pt);
+            \end{scriptsize}
+        \end{tikzpicture}
+    }
+\end{figure}
+
+\begin{definition}
+    Given function \(f:\:S\rightarrow T\), \(S\) is the \emph{domain}. \(T\) is the \emph{codomain}.
+\end{definition}
+
+\bigskip
+\begin{definition}
+    Given function \(f:\: S\rightarrow T\), the \emph{range} is the set \(\setbuild{f(x)\in T}{x\in S}\).
+    \footnote{The range is also called the \emph{image} of \(f\). The domain is thus the \emph{pre-image}.}
+\end{definition}
+
+Clearly, the range \(R\) of function \(f:\:S\rightarrow T\) is the subset of the codomain of the function.
+
+\subsection{Basic Properties of Functions}
+
+\begin{definition}
+    A function \(f:\:S\rightarrow T\) is \emph{injective}\index{Functions!Injection}, or \emph{one-to-one}, if \(\forall\:a,b\in S\:(a=b)\Rightarrow(f(a)=f(b))\).
+\end{definition}
+
+Intuitively, this means that there is at most one input for each output. Thus, this is a \emph{one-to-one} mapping. An example:
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Injection}
+
+    \resizebox*{16em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.5,-1.5) rectangle (3.5,3.5);
+            \draw [rotate around={90.:(-2.,0.5)},line width=2.pt] (-2.,0.5) ellipse (1.825140769936443cm and 1.039778260055571cm);
+            \draw [rotate around={90.:(2.,0.5)},line width=2.pt] (2.,0.5) ellipse (1.825140769936443cm and 1.039778260055571cm);
+            \draw (-2,3) node[anchor=center] {\LARGE$S$};
+            \draw (2,3) node[anchor=center] {\LARGE$T$};
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt, line width=2.pt] (-2.,2.)-- (2.,2.);
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt, line width=2.pt] (-2.,1.)-- (2.,1.);
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt, line width=2.pt] (-2.,0.)-- (2.,0.);
+            \begin{scriptsize}
+            \draw [fill=black] (-2.,2.) circle (2.5pt);
+            \draw [fill=black] (-2.,1.) circle (2.5pt);
+            \draw [fill=black] (-2.,0.) circle (2.5pt);
+            \draw [fill=black] (2.,2.) circle (2.5pt);
+            \draw [fill=black] (2.,1.) circle (2.5pt);
+            \draw [fill=black] (2.,0.) circle (2.5pt);
+            \draw [fill=black] (2.,-1.) circle (2.5pt);
+            \end{scriptsize}
+        \end{tikzpicture}
+    }
+\end{figure}
+
+\bigskip
+\begin{proposition}
+    If function \(f:\: S\rightarrow T\) is injective, then \(|S| \le |T|\).
+\end{proposition}
+\begin{proof}
+    By definition of injection, every element of \(S\) has a one-to-one correspondence to an element in \(T\). More precisely,
+    \(|S|=|\text{im}(f)|\) where \(\text{im}(f)\) is the image of \(f\), i.e.\ \(\text{im}(f)=\setbuild{f(x)\in T}{x\in S}\).
+    \(\text{im}(f)\subseteq T\) as all elements of \(\text{im}(f)\) is an element of \(T\) by definition of the function.
+    In conclusion, \(|S|=|\text{im}(f)|\le|T|\).
+\end{proof}
+
+\bigskip
+\begin{definition}
+    A function \(f:\:S\rightarrow T\) is \emph{surjective}\index{Functions!Surjection}, or \emph{onto}, if \(\forall\:t\in T\existss s\in S\ (s,t)\in f\).
+\end{definition}
+
+Intuitively, this means that every value in the codomain has an input in the domain that yields that value. In this sense, the domain
+completely maps \emph{onto} the codomain. An example:
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Surjection}
+
+    \resizebox*{16em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.5,-1.5) rectangle (3.5,3.5);
+            \draw [rotate around={90.:(-2.,0.5)},line width=2.pt] (-2.,0.5) ellipse (1.825140769936443cm and 1.039778260055571cm);
+            \draw [rotate around={90.:(2.,0.5)},line width=2.pt] (2.,0.5) ellipse (1.825140769936443cm and 1.039778260055571cm);
+            \draw (-2,3) node[anchor=center] {\LARGE$S$};
+            \draw (2,3) node[anchor=center] {\LARGE$T$};
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt,line width=2.pt] (-2.,2.)-- (2.,2.);
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt,line width=2.pt] (-2.,1.)-- (2.,1.);
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt,line width=2.pt] (-2.,0.)-- (2.,0.);
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt,line width=2.pt] (-2.,-1.)-- (2.,0.);
+            \begin{scriptsize}
+            \draw [fill=black] (-2.,2.) circle (2.5pt);
+            \draw [fill=black] (-2.,1.) circle (2.5pt);
+            \draw [fill=black] (-2.,0.) circle (2.5pt);
+            \draw [fill=black] (-2.,-1.) circle (2.5pt);
+            \draw [fill=black] (2.,2.) circle (2.5pt);
+            \draw [fill=black] (2.,1.) circle (2.5pt);
+            \draw [fill=black] (2.,0.) circle (2.5pt);
+            \end{scriptsize}
+        \end{tikzpicture}
+    }
+\end{figure}
+
+\bigskip
+\begin{proposition}
+    If function \(f:\: S\rightarrow T\) is surjective, then \(|S|\ge|T|\).
+\end{proposition}
+\begin{proof}
+    By definition of surjection, every element in the codomain has at least one element of the domain mapping to it. Assume \(|S|< |T|\).
+    If there is a one-to-one mapping or many-to-one, then this means that exists element(s) of \(T\) which does not have mappings from
+    \(S\) to \(T\). This contradicts the definition of surjection meaning \(|S|\ge|T|\). 
+\end{proof}
+
+\bigskip
+\begin{definition}
+    A function \(f:\: S\rightarrow T\) is \emph{bijective}\index{Functions!Bijection} if it is injective and surjective. 
+\end{definition}
+
+An important property of bijections is that they have a left-inverse and right-inverse. Given function, then there exists 
+\(f^{-1}\) such that \(f\circ f^{-1}=1_S\) and \(f^{-1}\circ f=1_T\) where \(1\) represents the identity bijection. 
+The identity bijection of any set \(S\) is the following:
+\begin{align*}
+    1_S:\quad S&\longrightarrow S \\
+            s&\longrightarrow s
+\end{align*}
+This is not true for surjections and injections.
+
+For injection \(f:\:S\rightarrow T\), inverse function \(f^{-1}: T\rightarrow S\) does
+not necessarily exist because there may exist elements of \(T\) which does not have an element of \(S\) mapping to it. Therefore, \(f^{-1}\)
+is not a function. However, an function \(f^{-1}:\:\text{im}(f)\rightarrow S\) can be defined where all the corresponding elements of the range
+is mapped to its input.
+
+For surjections \(f:\:S\rightarrow T\). the inverse function also does not exist because is is possible for many elements of the domain map to the
+same element of the range. As a result, the inverse will not be a function.
+
+An example of a bijection:
+\begin{figure}[H]
+    \centering
+    \textbf{Example of Bijection}
+
+    \resizebox{16em}{12em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.5,-1.5) rectangle (3.5,3.5);
+            \draw [rotate around={90.:(-2.,0.5)},line width=2.pt] (-2.,0.5) ellipse (1.825140769936443cm and 1.039778260055571cm);
+            \draw [rotate around={90.:(2.,0.5)},line width=2.pt] (2.,0.5) ellipse (1.825140769936443cm and 1.039778260055571cm);
+            \draw (-2,3) node[anchor=center] {\LARGE$S$};
+            \draw (2,3) node[anchor=center] {\LARGE$T$};
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt,line width=2.pt] (-2.,2.)-- (2.,2.);
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt,line width=2.pt] (-2.,1.)-- (2.,1.);
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt,line width=2.pt] (-2.,0.)-- (2.,0.);
+            \draw [->,>=stealth,shorten <=5.pt,shorten >=5.pt,line width=2.pt] (-2.,-1.)-- (2.,-1.);
+            \begin{scriptsize}
+            \draw [fill=black] (-2.,2.) circle (2.5pt);
+            \draw [fill=black] (-2.,1.) circle (2.5pt);
+            \draw [fill=black] (-2.,0.) circle (2.5pt);
+            \draw [fill=black] (-2.,-1.) circle (2.5pt);
+            \draw [fill=black] (2.,2.) circle (2.5pt);
+            \draw [fill=black] (2.,1.) circle (2.5pt);
+            \draw [fill=black] (2.,0.) circle (2.5pt);
+            \draw [fill=black] (2.,-1.) circle (2.5pt);
+            \end{scriptsize}
+        \end{tikzpicture}
+    }
+\end{figure}
+
+\bigskip
+\begin{proposition}
+    If a function \(f:\:S\rightarrow T\) is a bijection, then \(|S|=|T|\).
+\end{proposition}
+\begin{proof}
+    Function \(f\) is bijective meaning it is both injective and surjective. By proposition \(2.1\), \(|S|\le|T|\) as
+    the function is injective. Likewise, by proposition \(2.2\), \(|S|\ge|T|\) as the function is surjective. Therefore,
+    \(|S|=|T|\) as both of these statements is true which is only possible if the order of the sets are equal.
+\end{proof}
+
+\section{Counting and Infinity}
+\index{Counting}
+
+\subsection{Basic Definitions}
+
+\begin{definition}
+    A set \(A\) is \emph{finite}\index{Counting!finite} if there exists a bijection between \(A\) and \(\set{1,2,\dots,n}\) for some \(n\ge0\).
+    Additionally, \(|A|=n\).
+\end{definition}
+
+\bigskip
+\begin{definition}
+    A set \(A\) is \emph{infinite}\index{Counting!infinite} if it is not finite.
+\end{definition}
+
+\bigskip
+\begin{definition}
+    A set \(A\) is \emph{countably infinite}\index{Counting!Countably Infinite} if there exists a bijection \(f:\:S\rightarrow\mathbb{N}\). 
+\end{definition}
+
+Intuitively, there is some intuitive way to write \(A\) in an order such that an \(n\)th element can be determined.
+This is in the same way how the ninth element of the infinite natural numbers can be determined. It is in this
+sense that \(\mathbb{N}\) is described as countable and by extension \(A\). 
+
+\bigskip
+\begin{definition}
+    A set \(A\) is \emph{countable}\index{Counting!Countable} if it is finite or countably infinite.
+\end{definition}
+
+\bigskip
+\begin{definition}
+    A set \(S\) is \emph{uncountable}\index{Counting!Uncountable} if it is not countable.
+\end{definition}
+
+\subsection{Integers are Countably Infinite}
+
+\begin{proposition}
+    The integers are countably infinite, i.e.\ \(|\mathbb{Z}|=|\mathbb{N}|\).
+\end{proposition}
+
+Consider the following diagram representing the bijection:
+\begin{figure}[H]
+    \centering
+    \textbf{Mapping From \(\mathbb{Z}\) to \(\mathbb{N}\)}
+
+    \resizebox{18em}{7em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.5,-0.5) rectangle (4.5,2.);
+            \draw [<->,>=stealth,line width=1.pt,domain=-2.5:4.5] plot(\x,{(-0.-0.*\x)/6.});
+            \draw [<-,>=stealth,line width=1.pt] (0.,0.25) circle (0.25cm);
+            \draw [<-,>=stealth,shift={(0.,0.)},line width=1.pt]  plot[domain=0.:3.141592653589793,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+            \draw [<-,>=stealth,shift={(1.5,0.)},line width=1.pt]  plot[domain=0.:3.141592653589793,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+            \draw [<-,>=stealth,shift={(0.5,-1.3333333333333333)},line width=1.pt]  plot[domain=0.4899573262537283:2.651635327336065,variable=\t]({1.*2.833333333333333*cos(\t r)+0.*2.833333333333333*sin(\t r)},{0.*2.833333333333333*cos(\t r)+1.*2.833333333333333*sin(\t r)});
+            \draw [<-,>=stealth,shift={(3.5,0.)},line width=1.pt]  plot[domain=0.:3.141592653589793,variable=\t]({1.*0.5*cos(\t r)+0.*0.5*sin(\t r)},{0.*0.5*cos(\t r)+1.*0.5*sin(\t r)});
+            \begin{scriptsize}
+            \draw [fill=black] (-2.,0.) circle (1.5pt);
+            \draw[color=black] (-2,-0.3) node {$-2$};
+            \draw [fill=black] (-1.,0.) circle (1.5pt);
+            \draw[color=black] (-1,-0.3) node {$-1$};
+            \draw [fill=black] (0.,0.) circle (1.5pt);
+            \draw[color=black] (0,-0.3) node {$0$};
+            \draw [fill=black] (1.,0.) circle (1.5pt);
+            \draw[color=black] (1,-0.3) node {$1$};
+            \draw [fill=black] (2.,0.) circle (1.5pt);
+            \draw[color=black] (2,-0.3) node {$2$};
+            \draw [fill=black] (3.,0.) circle (1.5pt);
+            \draw[color=black] (3,-0.3) node {$3$};
+            \draw [fill=black] (4.,0.) circle (1.5pt);
+            \draw[color=black] (4,-0.3) node {$4$};
+            \end{scriptsize}
+        \end{tikzpicture}
+    }
+\end{figure}
+Clearly, this is a bijection. The mapping can be represented by the following table:
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{c|c}
+        \(\mathbb{Z}\) & \(\mathbb{N}\) \\
+        \hline
+        \(0\) & \(0\) \\
+        \(-1\) & \(1\) \\
+        \(1\) & \(2\) \\
+        \(-2\) & \(3\) \\
+        \(2\) & \(4\)
+    \end{tabular}
+\end{figure}
+The function and its inverse may be explicitly defined:
+\begin{align*}
+    f:\quad\mathbb{Z}&\longrightarrow\mathbb{N}_0 \\
+                    x&\longrightarrow\begin{cases}
+                        |2x|-1 & x<0 \\ 2x & x\ge0
+                    \end{cases}
+\end{align*}
+\begin{align*}
+    f^{-1}:\quad\mathbb{N}_0&\longrightarrow\mathbb{Z} \\
+                           x&\longrightarrow\lfloor(-1)^{x}\frac{x}{2}\rfloor
+\end{align*}
+Because there is a bijection between \(\mathbb{Z}\) and \(\mathbb{N}\), \(|\mathbb{Z}|=|\mathbb{N}|\).
+This means that the integers are countably infinite. 
+
+\subsection{Rationals Numbers are Countably Infinite}
+
+\begin{proposition}
+    The rational numbers are countably infinite, i.e.\ \(|\mathbb{Q}|=|\mathbb{N}|\).
+\end{proposition}
+
+We can consider rational numbers as a pair of integers. In this way, a fraction can be represented by
+a 2-dimensional coordinate of integers. However, two coordinates may represent the same fraction. For
+example, take \((p,q)\) and \((2p,2q)\) where \(p,q\in\mathbb{Z}\). This issue is mitigated if points
+which their fraction representation would not be in simplified form are ignored. In other words, \((p,q)\)
+are not considered when \(p\) and \(q\) are not \emph{coprime}. 
+
+Another consequence is that the third and fourth quadrant of the cartesian coordinate system may be ignored
+because all fractions formed by the points in those quadrants can be formed by the points in the first and second
+quadrant.
+
+The grid would look like the following:
+\begin{figure}[H]
+    \centering
+    \textbf{Coordinates That Represents Fractions}
+
+    Any fraction \(p/q\) corresponds with point \((p,q)\).
+
+    \resizebox{15em}{8em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-3.5,-0.5) rectangle (3.5,3.5);
+            \draw [<->,>=stealth,line width=2.pt] (-3.5,0.)-- (3.5,0.);
+            \draw [<->,>=stealth,line width=2.pt] (0.,3.5)-- (0.,-0.5);
+            \draw (3.190369660517843,0.5361219287454672) node[anchor=north west] {$p$};
+            \draw (0.11387172475044952,3.5242604707462206) node[anchor=north west] {$q$};
+            \draw (-3,-0.25) node[anchor=center] {$-3$};
+            \draw (-2,-0.25) node[anchor=center] {$-2$};
+            \draw (-1,-0.25) node[anchor=center] {$-1$};
+            \draw (1,-0.25) node[anchor=center] {$1$};
+            \draw (2,-0.25) node[anchor=center] {$2$};
+            \draw (3,-0.25) node[anchor=center] {$3$};
+            \draw [fill=red] (-3.,3.) circle (2.5pt);
+            \draw [fill=black] (-2.,3.) circle (2.5pt);
+            \draw [fill=black] (-1.,3.) circle (2.5pt);
+            \draw [fill=red] (0.,3.) circle (2.5pt);
+            \draw (-0.25,3) node[anchor=center] {$3$};
+            \draw [fill=black] (1.,3.) circle (2.5pt);
+            \draw [fill=black] (2.,3.) circle (2.5pt);
+            \draw [fill=red] (3.,3.) circle (2.5pt);
+            \draw [fill=black] (-3.,2.) circle (2.5pt);
+            \draw [fill=red] (-2.,2.) circle (2.5pt);
+            \draw [fill=black] (-1.,2.) circle (2.5pt);
+            \draw [fill=red] (0.,2.) circle (2.5pt);
+            \draw (-0.25,2) node[anchor=center] {$2$};
+            \draw [fill=black] (1.,2.) circle (2.5pt);
+            \draw [fill=red] (2.,2.) circle (2.5pt);
+            \draw [fill=black] (3.,2.) circle (2.5pt);
+            \draw [fill=black] (-3.,1.) circle (2.5pt);
+            \draw [fill=black] (-2.,1.) circle (2.5pt);
+            \draw [fill=black] (-1.,1.) circle (2.5pt);
+            \draw [fill=black] (0.,1.) circle (2.5pt);
+            \draw (-0.25,1) node[anchor=center] {$1$};
+            \draw [fill=black] (1.,1.) circle (2.5pt);
+            \draw [fill=black] (2.,1.) circle (2.5pt);
+            \draw [fill=black] (3.,1.) circle (2.5pt);
+        \end{tikzpicture}  
+    }
+
+    The dots in red are omitted points because the coordinates are not coprime.
+\end{figure}
+
+How consider the following order of these points. Each arrow corresponds with a natural number.
+This is what makes the rational number countably infinite, and this correspondence defines a
+bijection between the natural numbers and the rational numbers.
+
+\begin{figure}[H]
+    \centering
+    \textbf{An Order of Rationals}
+
+    \resizebox{14em}{8em}{
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+            \clip(-2.5,-0.5) rectangle (3.5,3.5);
+            \draw [<->,>=stealth,line width=2.pt] (-2.5,0.)-- (3.5,0.);
+            \draw [<->,>=stealth,line width=2.pt] (0.,3.5)-- (0.,-0.5);
+            \draw (3.190369660517843,0.5361219287454672) node[anchor=north west] {$p$};
+            \draw (0.11387172475044952,3.5242604707462206) node[anchor=north west] {$q$};
+            \draw (-2,-0.25) node[anchor=center] {$-2$};
+            \draw (-1,-0.25) node[anchor=center] {$-1$};
+            \draw (1,-0.25) node[anchor=center] {$1$};
+            \draw (2,-0.25) node[anchor=center] {$2$};
+            \draw (3,-0.25) node[anchor=center] {$3$};
+            \draw [->,>=stealth,line width=2.pt] (0.,1.)-- (1.,1.);
+            \draw [->,>=stealth,line width=2.pt] (1.,1.)-- (1.,2.);
+            \draw [line width=2.pt] (1.,2.)-- (0.,2.);
+            \draw [->,>=stealth,line width=2.pt] (0.,2.)-- (-1.,2.);
+            \draw [->,>=stealth,line width=2.pt] (-1.,2.)-- (-1.,1.);
+            \draw [->,>=stealth,line width=2.pt] (-1.,1.)-- (-2.,1.);
+            \draw [line width=2.pt] (-2.,1.)-- (-2.,2.);
+            \draw [->,>=stealth,line width=2.pt] (-2.,2.)-- (-2.,3.);
+            \draw [->,>=stealth,line width=2.pt] (-2.,3.)-- (-1.,3.);
+            \draw [line width=2.pt] (-1.,3.)-- (0.,3.);
+            \draw [->,>=stealth,line width=2.pt] (0.,3.)-- (1.,3.);
+            \draw [->,>=stealth,line width=2.pt] (1.,3.)-- (2.,3.);
+            \draw [line width=2.pt] (2.,3.)-- (2.,2.);
+            \draw [->,>=stealth,line width=2.pt] (2.,2.)-- (2.,1.);
+            \draw [->,>=stealth,line width=2.pt] (2.,1.)-- (3.,1.);
+            \draw [->,>=stealth,line width=2.pt] (3.,1.)-- (3.,2.);
+            \draw [line width=2.pt] (3.,2.)-- (3.,3.);
+            \draw [fill=black] (-2.,3.) circle (2.5pt);
+            \draw [fill=black] (-1.,3.) circle (2.5pt);
+            \draw [fill=red] (0.,3.) circle (2.5pt);
+            \draw (-0.25,2.8) node[anchor=center] {$3$};
+            \draw [fill=black] (1.,3.) circle (2.5pt);
+            \draw [fill=black] (2.,3.) circle (2.5pt);
+            \draw [fill=red] (3.,3.) circle (2.5pt);
+            \draw [fill=red] (-2.,2.) circle (2.5pt);
+            \draw [fill=black] (-1.,2.) circle (2.5pt);
+            \draw [fill=red] (0.,2.) circle (2.5pt);
+            \draw (-0.25,1.8) node[anchor=center] {$2$};
+            \draw [fill=black] (1.,2.) circle (2.5pt);
+            \draw [fill=red] (2.,2.) circle (2.5pt);
+            \draw [fill=black] (3.,2.) circle (2.5pt);
+            \draw [fill=black] (-2.,1.) circle (2.5pt);
+            \draw [fill=black] (-1.,1.) circle (2.5pt);
+            \draw [fill=black] (0.,1.) circle (2.5pt);
+            \draw (-0.25,0.8) node[anchor=center] {$1$};
+            \draw [fill=black] (1.,1.) circle (2.5pt);
+            \draw [fill=black] (2.,1.) circle (2.5pt);
+            \draw [fill=black] (3.,1.) circle (2.5pt);
+        \end{tikzpicture}
+    }
+\end{figure}
+
+For example, in this definition, the first rational number is \(1/0\) or \(0\); the fifth rational number
+is \(-1\) and the seventh rational number is \(-\frac{2}{3}\).
+
+In conclusion, \(\mathbb{Q}\) is countably infinite and \(|\mathbb{Q}|=|\mathbb{N}|\).
+
+\bigskip
+\textbf{Final Notes:}
+\begin{itemize}
+    \item There are no points on the \(p\) axis because at those points \(q=0\). A fraction \(p/q\) cannot have
+    \(0\) as a denominator.
+    \item Two numbers are \emph{coprime} if their greatest common factor is \(1\). Fractions are in simplest
+    forms when the numerator and denominator are coprime. For this section, I will denote the greatest common
+    factor of two integers \(a,b\) as \((a,b)\) as is standard. This should not be confused with coordinates which 
+    will be explicitly stated. Thus, given any coordinate \((p,q)\), if \((p,q)\ne1\), then it is a unsimplified fraction
+    as it can be reduced by \((p,q)\).
+    \item Coordinate \((1,0)\) is included as it is equal to \(0\). However, coordinate \((2,0)\) correspond with
+    the rational \(0\). However, \((2,0)=2\) as the greatest common factor of both is \(2\) since \(2\mid 0\).
+    Therefore, for points \((p,0)\) for all integers \(p\) not equal to \(0\), the corresponding fraction can be simplified.
+\end{itemize}
+
+\subsection{Examples of Uncountable Sets}
+
+\begin{proposition}
+    The real numbers \(\mathbb{R}\) is uncountable.
+\end{proposition}
+
+\bigskip
+\begin{proposition}
+    The power set of the natural numbers \(\mathcal{P}(\mathbb{N})\) is uncountable.
+\end{proposition}
